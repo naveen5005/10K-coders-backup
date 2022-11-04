@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Object</title>
+</head>
+<body>
+    <script>
+
+        studentInfo={
+            fullName : "Naveen",
+            class : "Tenth",
+            marks :""
+        }
+
+        studentInfo['marks']={
+            Science : 100,
+            Maths : 100,
+            English : 100,
+            Social : 50,
+            Telugu : 90,
+            Hindi : 76
+        }
+        studentInfo.marks.games=100;
+
+        console.log(studentInfo);
+        console.log(studentInfo.marks);
+
+        for(a in studentInfo){
+            document.write(a +" : "+studentInfo[a]+"<br>");
+        }
+
+        // it will convert object to string
+        for(a in studentInfo){
+            document.write(a +" : "+JSON.stringify(studentInfo[a])+"<br>");
+        }
+
+        document.write("<br>");
+        for(a in studentInfo.marks){
+            document.write(a +" : "+studentInfo.marks[a]+"<br>");
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Object</title>
+</head>
+<body>
+    
+    <script>
+        var fname;
+        document.write(fname+"<br><br>");
+        fname = "Venky"
+        document.write(fname+"<br><br>");
+
+        employeeInfo={
+            employeeName : "",
+            employeeId : 118625,
+            isEmployeeWorking : true
+        }
+
+        console.log(typeof employeeInfo.isEmployeeWorking);
+        
+        employeeInfo.designation ="Application Development Analyst";
+        employeeInfo['package']="6LPA";
+        // employeeName = "Naveen Bellam";
+        // console.log(employeeName)
+
+        // employeeInfo['employeeName']="Naveen Bellam";
+        employeeInfo.employeeName = "Naveen Bellam";
+        console.log(employeeInfo);
+
+        
+        for(a in employeeInfo){
+            document.write(a+" : "+employeeInfo[a]+"<br>")
+        }
+    </script>
+</body>
+</html>
