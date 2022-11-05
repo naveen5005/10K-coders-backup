@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers Data</title>
+</head>
+<body>
+    <script>
+        // Literal way
+        var teacherData = {
+            fname : "Naveen",
+            lname : "Babu",
+            email : "bellamnaveen314@gmail.com",
+            phnum : 9398457833,
+            designation : "Assistance Teacher",
+            fullname : function(){
+                document.write(this.fname+" "+this.lname)
+            }
+        }
+        
+        document.write("Literal way for creating an object...! <br>")
+        for(a in teacherData){
+            if(a !== "fullname"){
+                document.write(a + " : "+teacherData[a]+"<br>");
+            }
+            else{
+                document.write(a + " : ");
+                teacherData.fullname();
+            }
+        }
+        document.write("<br><br>")
+
+        // OOPS way
+        var teacherData2 = new Object(
+            {
+                fname : "Hanu",
+                lname : "Kumar",
+                email : "hanu@gmail.com",
+                phnum : 9877462844,
+                designation : "Professor"
+            }
+        )
+        document.write("OOPS way for creating an object...! <br>")
+        for(a in teacherData2){
+            document.write(a + " : "+teacherData2[a]+"<br>")
+        }
+        document.write("<br><br>")
+
+        // constructor function
+        function teacherData3(fname,lname,email,phnum,designation){
+            this.fname = fname;
+            this.lname = lname;
+            this.email = email;
+            this.phnum = phnum;
+            this.designation = designation;
+        } 
+        document.write("Constructor function way for creating an object...! <br>")
+        var teacherOutput3 = new teacherData3("Sai","Kumar","sai@gmail.com",9864538374,"Senior Professor")
+        for(a in teacherOutput3){
+            document.write(a + " : "+teacherOutput3[a]+"<br>")
+        }
+        document.write("<br><br>")
+        
+        // class function way for creating an object
+
+        class teacherData4{
+            constructor(fname,lname,email,phnum,designation){
+                this.fname=fname;
+                this.lname=lname;
+                this.email=email;
+                this.phnum=phnum;
+                this.designation = designation;
+            }
+        }
+        document.write("Class function way for creating an object...! <br>")
+        var teacherOutput4 = new teacherData4("Kirshna","murali","murali@gmail.com",9876532876);
+        console.log(teacherOutput4);
+        for(a in teacherOutput4){
+            document.write(a+" : "+teacherOutput4[a]+"<br>");
+        }
+
+    </script>
+</body>
+</html>

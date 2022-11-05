@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Data</title>
+</head>
+<body>
+    <script>
+
+        // Literal way
+        var Staff ={
+            fname : "Naveen",
+            lname : "Babu",
+            email : "bellamnaveen314@gmail.com",
+            phnum : 9398457833
+        }
+        document.write("Literal way for creating an object...! <br>")
+        for(a in Staff){
+            document.write(a+" : "+Staff[a]+"<br>");
+        }
+
+        document.write("<br><br>")
+
+        // OOPS way
+        var Staff2=new Object(
+            {
+                fname : "Kiran",
+                lname : "Kumar",
+                email : "kiran@gmail.com",
+                phnum : 9383638633
+            }
+        )
+        document.write("OOPS way for creating an object...! <br>")
+        for(a in Staff2){
+            document.write(a+" : "+Staff2[a]+"<br>");
+        }
+        document.write("<br><br>")
+
+
+        // constructor function way for creating an object
+        function Staff3(fname,lname,email,phnum){
+            this.fname = fname;
+            this.lname = lname;
+            this.email = email;
+            this.phnum = phnum;
+        }
+        document.write("Constructor function way for creating an object...! <br>")
+        var output3 = new Staff3("Kirshna","murali","murali@gmail.com",9876532876);
+        console.log(output3);
+        for(a in output3){
+            document.write(a+" : "+output3[a]+"<br>");
+        }
+        document.write("<br><br>");
+
+        // class function way for creating an object
+
+        class Staff4{
+            constructor(fname,lname,email,phnum){
+                this.fname=fname;
+                this.lname=lname;
+                this.email=email;
+                this.phnum=phnum;
+            }
+        }
+        document.write("Class function way for creating an object...! <br>")
+        var output4 = new Staff4("Kirshna","murali","murali@gmail.com",9876532876);
+        console.log(output4);
+        for(a in output4){
+            document.write(a+" : "+output4[a]+"<br>");
+        }
+
+
+    </script>
+</body>
+</html>

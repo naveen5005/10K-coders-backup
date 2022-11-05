@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+</head>
+<body>
+    <script>
+        // Literal way
+        var movieDetails = {
+            fname : "Naveen",
+            lname : "Babu",
+            email : "bellamnaveen314@gmail.com",
+            phnum : 9398457833,
+            designation : "Hero",
+            period : "4 months",
+            fullname : function(){
+                document.write(this.fname+" "+this.lname)
+            },
+            Herione : "Rashmika Mandana"
+        }
+        
+        document.write("Literal way for creating an object...! <br>")
+        for(a in movieDetails){
+            if(a !== "fullname"){
+                document.write(a + " : "+movieDetails[a]+"<br>");
+            }
+            else{
+                document.write(a + " : ");
+                movieDetails.fullname();
+                document.write("<br>")
+            }
+        }
+
+        document.write("<br><br>")
+
+        // OOPS way
+        var movieDetails2 = new Object(
+            {
+                fname : "Hanu",
+                lname : "Kumar",
+                email : "hanu@gmail.com",
+                phnum : 9877462844,
+                designation : "Comedian",
+                fullname : function(){
+                    document.write(this.fname+" "+this.lname);
+                },
+                period : "5 months"
+            }
+        )
+        document.write("OOPS way for creating an object...! <br>")
+        for(a in movieDetails2){
+            if(a !== "fullname"){
+                document.write(a + " : "+movieDetails2[a]+"<br>");
+            }
+            else{
+                document.write(a + " : ");
+                movieDetails2.fullname();
+                document.write("<br>")
+            }
+        }
+
+        document.write("<br><br>")
+
+        // constructor function
+        function movieDetails3(fname,lname,email,phnum,designation,fullname,period){
+            this.fname = fname;
+            this.lname = lname;
+            this.email = email;
+            this.phnum = phnum;
+            this.designation = designation;
+            this.fullname = function(){
+                document.write(this.fname+" "+this.lname);
+            };
+            this.period = period;
+        } 
+        document.write("Constructor function way for creating an object...! <br>")
+        var movieDetails3 = new movieDetails3("Sai","Kumar","sai@gmail.com",9864538374,"Villan","9 months")
+        for(a in movieDetails3){
+            if(a !== "fullname"){
+                document.write(a + " : "+movieDetails3[a]+"<br>")
+            }
+            else{
+                document.write(a + " : ");
+                movieDetails3.fullname();
+                document.write("<br>")
+            }
+        }
+        document.write("<br><br>")
+        
+        // class function way for creating an object
+
+        class movieDetails4{
+            constructor(fname,lname,email,phnum,designation,fullname,period){
+                this.fname=fname;
+                this.lname=lname;
+                this.email=email;
+                this.phnum=phnum;
+                this.designation = designation;
+                this.fullname = function(){
+                document.write(this.fname+" "+this.lname);
+                };
+                this.period = period;
+            }
+        }
+        document.write("Class function way for creating an object...! <br>")
+        var movieDetails4 = new movieDetails4("Kirshna","murali","murali@gmail.com",9876532876);
+        console.log(movieDetails4);
+        for(a in movieDetails4){
+            document.write(a+" : "+movieDetails4[a]+"<br>");
+        }
+    </script>
+</body>
+</html>

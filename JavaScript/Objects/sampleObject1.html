@@ -12,7 +12,12 @@
         var Person ={
             firstName : "Naveen",
             lastName : "Bellam",
+            fullName : function(){
+                document.write(this.firstName+" "+this.lastName+"<br>");
+            }
         }
+
+        Person.fullName();
 
         // Adding key value pair using .notation
         Person.city = "Kakinada";

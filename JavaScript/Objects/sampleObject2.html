@@ -15,10 +15,14 @@
         document.write(fname+"<br><br>");
 
         employeeInfo={
-            employeeName : "",
+            employeeName : "Kiran",
             employeeId : 118625,
-            isEmployeeWorking : true
+            isEmployeeWorking : true,
+            employeeData : function() {
+                document.write("Good Employee in the company is "+this.employeeName+" and his employeeId is "+this.employeeId+"<br><br>");
+            }
         }
+        employeeInfo.employeeData();
 
         console.log(typeof employeeInfo.isEmployeeWorking);
         
@@ -35,6 +39,8 @@
         for(a in employeeInfo){
             document.write(a+" : "+employeeInfo[a]+"<br>")
         }
+
+        employeeInfo.employeeData();
     </script>
 </body>
 </html>
