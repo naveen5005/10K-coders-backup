@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // value by reference
+         var person={
+            fname : "naveen",
+            lname : "babu"
+         }
+         person.fname = "Kiran";
+         var person2=person;
+         console.log(person);
+         console.log(person2);
+
+
+         // value by value
+         function EmployeeData(fname,lname){
+            this.fname = fname;
+            this.lname = lname;
+            this.city = "Bangalore";
+            this.state ="Karnataka";
+            this.pincode = 5333309;
+         }
+
+         var employeeDataOutput1 = new EmployeeData("naveen","kumar");
+         var employeeDataOutput2 = new EmployeeData("Sam","kumar");
+         
+         console.log(employeeDataOutput1);
+         console.log(employeeDataOutput2);
+    </script>
+</body>
+</html>
