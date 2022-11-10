@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAP method</title>
+</head>
+<body>
+    <script>
+        var person =["Rahul","Rohit","kohli","Pandya"]
+        person.forEach((playerName,index,array)=>{
+            document.write(playerName+":"+index+":"+array+"<br>");
+        })
+        document.write("<br><br>")
+        var UpdatedPerson = person.map((playerName,index,array)=>{
+            return (index+1)+") "+playerName;
+        })
+        document.write(UpdatedPerson+"<br>");
+        document.write(typeof(UpdatedPerson));
+        
+    </script>
+</body>
+</html>

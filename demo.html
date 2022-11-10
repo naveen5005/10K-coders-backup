@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <script>
+        var indiaScore = [
+            {
+                name: "KL Rahul",
+                noOfRuns: 4,
+                noOfBalls: 8,
+                fours: 0.0,
+                sixs: 0,
+                SR: 50.00
+            },
+            {
+                name: "Rohit Sharma(c)",
+                noOfRuns: 4,
+                noOfBalls: 7,
+                fours: 0,
+                sixs: 0,
+                SR: 57.14
+            },
+            {
+                name: "Virat Kohli",
+                noOfRuns: 82,
+                noOfBalls: 53,
+                fours: 6,
+                sixs: 4,
+                SR: 154.72
+            },
+            {
+                name: "Suryakumar Yadav",
+                noOfRuns: 15,
+                noOfBalls: 10,
+                fours: 2,
+                sixs: 0,
+                SR: 150.00
+            },
+            {
+                name: "Axar Patel",
+                noOfRuns: 2,
+                noOfBalls: 3,
+                fours: 0,
+                sixs: 0,
+                SR: 66.67
+            },
+            {
+                name: "Hardik Pandya",
+                noOfRuns: 40,
+                noOfBalls: 37,
+                fours: 1,
+                sixs: 2,
+                SR: 108.11
+            },
+            {
+                name: "Dinesh Karthik (wk)",
+                noOfRuns: 1,
+                noOfBalls: 2,
+                fours: 0,
+                sixs: 0,
+                SR: 50.00
+            },
+            {
+                name: "Ravichanfran Ashwin",
+                noOfRuns: 1,
+                noOfBalls: 1,
+                fours: 0,
+                sixs: 0,
+                SR: 100.00
+            }
+        ];
+
+        //Total 4's by all the players
+        var totalFours = indiaScore.reduce((initialValue, nooffours) => {
+            if (initialValue.fours) {
+                // console.log(initialValue.fours);
+                // console.log(nooffours.fours);
+                return initialValue.fours + nooffours.fours;
+            }
+            else {
+                return initialValue + nooffours.fours;
+            }
+        }); 
+
+        document.write(totalFours);
+        console.log(totalFours);
+
+
+        // var a=[1,2,3,4,5];
+
+        // var output = a.reduce((b,c)=>{
+        //     document.write(b);
+        //     document.write(c);
+        //     document.write("<br>")
+        //     console.log(b)
+        //     return b+c;
+        // })
+
+        // console.log(output)
+        // document.write(output)
+    </script> -->
+
+    <script>
+        var indiaScore = [
+            {
+                name: "KL Rahul",
+                noOfRuns: 4,
+                noOfBalls: 8,
+                fours: 20,
+                sixs: 0,
+                SR: 50.00
+            },
+            {
+                name: "Rohit Sharma(c)",
+                noOfRuns: 4,
+                noOfBalls: 7,
+                fours: 0,
+                sixs: 0,
+                SR: 57.14
+            },
+            {
+                name: "Virat Kohli",
+                noOfRuns: 82,
+                noOfBalls: 53,
+                fours: 6,
+                sixs: 4,
+                SR: 154.72
+            },
+            {
+                name: "Suryakumar Yadav",
+                noOfRuns: 15,
+                noOfBalls: 10,
+                fours: 2,
+                sixs: 0,
+                SR: 150.00
+            },
+            {
+                name: "Axar Patel",
+                noOfRuns: 82,
+                noOfBalls: 3,
+                fours: 0,
+                sixs: 0,
+                SR: 66.67
+            },
+            {
+                name: "Hardik Pandya",
+                noOfRuns: 40,
+                noOfBalls: 37,
+                fours: 1,
+                sixs: 2,
+                SR: 108.11
+            },
+            {
+                name: "Dinesh Karthik (wk)",
+                noOfRuns: 1,
+                noOfBalls: 2,
+                fours: 0,
+                sixs: 0,
+                SR: 50.00
+            },
+        ];
+
+        // var lowestSR = indiaScore.reduce((a,b)=>{
+        //     if(Object.values(a).length > 0){
+        //         return Math.min(a.SR,b.SR);
+        //     }
+        //     else{
+        //         return Math.min(a,b.SR);
+        //     }
+        // });
+        // console.log(lowestSR);
+        // var lowestSRPlayers = indiaScore.filter((player)=>{
+        //     return player.SR == lowestSR;
+        // });
+        // lowestSRPlayers.forEach((player)=>{
+        //     document.write("Lowest SR scored : "+player.name+" nad the strike rate is "+player.SR+"<br>")
+        // })
+
+
+        //Total 4's by all the players
+        // var totalFours = indiaScore.reduce((initialValue, nooffours) => {
+        //     if (initialValue.fours == 0) {
+        //         return initialValue.fours + nooffours.fours;
+        //     }
+        //     else if(initialValue.fours){
+        //         return initialValue.fours + nooffours.fours;
+        //     }
+        //     else {
+        //         return initialValue + nooffours.fours;
+        //     }
+        // });
+        // document.write("Total no of fours : " + totalFours + "<br><br>");
+
+
+        document.write("Highest run scored by the players. <br>")
+        var highestRun = indiaScore.reduce((a, b) => {
+            if (Object.values(a).length > 0) {
+                return Math.max(a.noOfRuns, b.noOfRuns);
+            }
+            else {
+                return Math.max(a, b.noOfRuns);
+            }
+        });
+
+        var highestRunPlayers = indiaScore.filter((player) => {
+            return player.noOfRuns == highestRun;
+        })
+        console.log(typeof(highestRunPlayers));
+        console.log(highestRunPlayers);
+        document.write(JSON.stringify(highestRunPlayers));
+        highestRunPlayers.forEach((player) => {
+            document.write("Highest run scorer is : " + player.name + "<br>");
+        })
+        console.log("Highest run : " + highestRun)
+        document.write("Scored highest run = " + highestRun + "<br> <br>");
+
+    </script>
+</body>
+
+</html>
