@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Object</title>
+</head>
+
+<body>
+    <script>
+        var randomNumber = [];
+        for (i = 0; i < 10; i++) {
+            rNumber = Math.round(Math.random() * 1000000);
+            randomNumber.push(rNumber);
+        }
+        console.log(randomNumber);
+        document.write(randomNumber,"<br><br>");
+
+        var a = Math.random() * 1000000;
+        console.log("Random number : ", a);
+        document.write("Random number : ",a,"<br><br>");
+
+        console.log("Round Number : ", Math.round(a));
+        document.write("Round Number : ", Math.round(a),"<br><br>");
+
+        console.log("Lowest Number : ", Math.floor(a));
+        document.write("Lowest Number : ", Math.floor(a),"<br><br>");
+
+        console.log("Highest Number : ", Math.ceil(a));
+        document.write("Highest Number : ", Math.ceil(a),"<br><br>");
+
+        for (i = 0; randomNumber.length < 10; i++) {
+            rNumber = Math.round(Math.random() * 1000000);
+            if (String(rNumber).length == 6) {
+                randomNumber.push(rNumber);
+            }
+        }
+        console.log(randomNumber);
+        document.write(randomNumber,"<br><br>")
+
+        while (randomNumber.length < 10) {
+            rNumber = Math.round(Math.random() * 1000000);
+            if (String(rNumber).length == 6) {
+                randomNumber.push(rNumber);
+            }
+        }
+        console.log(randomNumber);
+        document.write(randomNumber,"<br><br>");
+
+        document.write("Min Number : ",Math.min(...randomNumber),"<br><br>");
+        document.write("Max number : ",Math.max(...randomNumber),"<br><br>");
+    </script>
+
+    <script>
+        var sixDigitOTP =[];
+        while(sixDigitOTP.length<10){
+            var random = Math.round(Math.random()*1000000);
+            if(String(random).length == 6){
+                sixDigitOTP.push(random);
+            }
+        }
+        console.log(sixDigitOTP);
+        document.write("six digit otp's are : ","<br>");
+        document.write(sixDigitOTP);
+    </script>
+</body>
+
+</html>

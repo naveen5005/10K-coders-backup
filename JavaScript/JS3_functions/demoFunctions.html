@@ -9,17 +9,26 @@
 <body>
     <script>
         function sayHello(){
-            document.write("Javascript functions says Hello...! <br><br>");
+            document.write("sayHello functions says Hello...! <br><br>");
         }
         sayHello();
 
         var sayBye = function () {
-            document.write("Javascript function says Bye...!");
+            document.write("sayBye function says Bye...! <br><br>");
         }
         sayBye();
 
+        function helloWorld() {
+            document.write("helloWorld function says Bye...!");
+        }
+        var sayHello =  helloWorld;
+        sayHello();
+        document.write("<br>")
+        helloWorld();
+        document.write("<br><br>")
+
         var sayGoodNight = () => {
-            document.write("Javascript function says good Night...!");
+            document.write("sayGoodNight function says good Night...!");
         }
         sayGoodNight();
 

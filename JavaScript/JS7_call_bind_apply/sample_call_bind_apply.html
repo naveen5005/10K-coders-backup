@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call,Bind and Apply</title>
+</head>
+<body>
+    <script>
+        var naveen = {
+            fname : "Naveen",
+            lname : "Kumar",
+        }
+        var murali = {
+            fname : "Murali",
+            lname : "Krishna"
+        }
+
+        function fullname(...argument){
+            document.write(this.fname+" "+this.lname,"<br>");
+            document.write(argument,"<br><br>");
+        }
+
+        document.write("using call method accessing objects : ","<br>")
+        fullname.call(naveen,["hello","hii","smart"]);
+        fullname.call(murali, "hello","hii","smart");
+        
+
+        document.write("<br>");
+        document.write("using bind method accessing objects : ","<br>")
+        var functionData = fullname.bind(naveen);
+        document.write(typeof(functionData),"<br>")
+        functionData(); 
+        var functionData2 = fullname.bind(murali);
+        functionData2();
+
+        document.write("<br>");
+        document.write("using apply method accessing objects : ","<br>");
+        fullname.apply(naveen,["hello","hii","smart"]);
+        fullname.apply(murali,"hello","hii","smart"); // won't accept the normal values, error will be thrown at console window.
+    </script>
+</body>
+</html>
