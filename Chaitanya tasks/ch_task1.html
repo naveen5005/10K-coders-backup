@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task1</title>
+</head>
+
+<body>
+    <script>
+        // var arr = [[1, 2],[3, 4],[5, 6]];
+        // function printArray(arr) {
+        //     for (var i = 0; i < arr.length; i++) {
+        //         for (var j = 0; j < arr[0].length; j++) {
+        //             console.log(arr[i][j]);
+        //         }
+        //     }
+        // }
+        // printArray(arr);
+
+
+        // function deleteElement(arr, ele) {
+        //     for (var i = 0; i < arr.length; i++) {
+        //         if (arr[i] == ele) {
+        //             arr.splice(i, 1);
+        //         }
+        //     }
+        //     return arr;
+        // }
+        // var arr = [23, 56, 4, 78, 5, 63, 45, 210, 56];
+        // arr = deleteElement(arr, 56)
+        // console.log(arr);
+
+        // for (var i = 0; i < 5; i++) {
+        //     setTimeout(() => console.log(i), 5000);// 5 5 5 5 5
+        // }
+
+
+        // function numPower(num, pow) {
+        //     var res = 1;
+        //     for (var i = 0; i < pow; i++) {
+        //         res = res * num;
+        //     }
+        //     return res;
+        // }
+        // console.log(numPower(4, 3));
+        // console.log(numPower(16, 2));
+
+
+
+
+        // let jsonn = [
+        //     {
+        //         "id": 1,
+        //         "name": "Leanne Graham",
+        //         "username": "Bret",
+        //         "email": "Sincere@april.biz",
+        //         "address": {
+        //             "street": "Kulas Light",
+        //             "suite": "Apt. 556",
+        //             "city": "Gwenborough",
+        //             "zipcode": "92998-3874",
+        //             "geo": {
+        //                 "lat": "-37.3159",
+        //                 "lng": "81.1496"
+        //             }
+        //         },
+        //         "phone": "1-770-736-8031 x56442",
+        //         "website": "hildegard.org",
+        //         "company": {
+        //             "name": "Romaguera-Crona",
+        //             "catchPhrase": "Multi-layered client-server neural-net",
+        //             "bs": "harness real-time e-markets"
+        //         }
+        //     }]
+        // // console.log(jsonn.email);
+        // // console.log(jsonn.address);
+        // // console.log(jsonn.phone);
+
+        // jsonn.forEach((element, i) => {
+        //     for (a in element) {
+        //         if (a==='"email"' && a==="address" && a==="phone") {
+        //             console.log(element.email);
+        //             console.log(element.address);
+        //             console.log(element.phone);
+        //         }
+        //     }
+        // })
+
+
+        // // How can you double elements of an array using reduce?
+
+        // var data =[1,2,3];
+        // var newData=data.reduce((element,b)=>{
+        //     return element*element;
+        // })
+        // console.log(newData) // we cAN'T
+
+
+
+        // if (time < 12) {
+        //     console.log("Good morning");
+        // } else if (time < 14) {
+        //     console.log("Good Afternoon");
+        // } else {
+        //     console.log("Good evening");
+        // }
+        // // TIME IS NOT DEFINED
+
+
+
+
+        // let employees = [
+        //     {
+        //         "id": 11,
+        //         "name": "Abhinav",
+        //         "salary": 75000
+        //     },
+        //     {
+        //         "id": 2131,
+        //         "name": "Raj",
+        //         "salary": 62000
+        //     },
+        //     {
+        //         "id": 3012,
+        //         "name": "Raj",
+        //         "salary": 32000
+        //     }]
+        // let idsArray = []
+        // for (let i = 0; i < employees.length; i++) {
+        //     idsArray.push(employees[i].id)
+        // }
+        // console.log(idsArray) // [11,2131,3012]
+
+        // var nameArray =[];
+        // for (let i = 0; i < employees.length; i++) {
+        //     nameArray.push(employees[i].name)
+        // }
+        // console.log(nameArray) // ['Abhinav', 'Raj', 'Raj']
+
+        // var salaryArray =[];
+        // for (let i = 0; i < employees.length; i++) {
+        //     salaryArray.push(employees[i].salary)
+        // }
+        // console.log(salaryArray) // [75000, 62000, 32000]
+
+        let employees = [
+            {
+                "id": 11,
+                "name": "Abhinav",
+                "salary": 75000
+            },
+            {
+                "id": 2131,
+                "name": "Raj",
+                "salary": 62000
+            },
+            {
+                "id": 3012,
+                "name": "Raj",
+                "salary": 32000
+            }]
+            // print names, salaries and ids in seperate arrays
+
+            // var nameArray =[];
+            // employees.forEach((element)=>{
+            //     for(a in element){
+            //         if(a === ele)
+            //     }
+            // });
+            // console.log(nameArray);
+
+            var aaa=employees.reduce((a,b)=>a+b.salary,0)
+            console.log(aaa)
+            var empLength = employees.length;
+
+            var avgSalaray = aaa / empLength;
+            console.log("The average salaray : ",avgSalaray);
+
+
+
+    </script>
+</body>
+
+</html>

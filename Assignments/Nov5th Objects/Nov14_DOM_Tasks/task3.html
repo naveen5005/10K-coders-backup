@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // http://filltext.com/?rows=10&id={index}&email={email}&username={username}&password={randomString|5}&pretty=true
+
+        var data = [
+            {
+                "id": 1,
+                "email": "KChaudary@dui.gov",
+                "username": "EHernandez",
+                "password": "qqQSw"
+            },
+            {
+                "id": 2,
+                "email": "TRoos@dolor.ly",
+                "username": "LWeissmann",
+                "password": "CEbil"
+            },
+            {
+                "id": 3,
+                "email": "MCalliste@aliquam.net",
+                "username": "GCrider",
+                "password": "DvkL2"
+            },
+            {
+                "id": 4,
+                "email": "DSjaardema@sit.com",
+                "username": "KObara",
+                "password": "N4wpH"
+            },
+            {
+                "id": 5,
+                "email": "SNewell@non.gov",
+                "username": "VBarge",
+                "password": "aSEpy"
+            },
+            {
+                "id": 6,
+                "email": "AMuzyka@orci.ly",
+                "username": "JDavila",
+                "password": "LnjxB"
+            },
+            {
+                "id": 7,
+                "email": "RIbarrondo@sollicitudin.com",
+                "username": "CLamorella",
+                "password": "6FeS7"
+            },
+            {
+                "id": 8,
+                "email": "DTreptow@aenean.gov",
+                "username": "MMoccio",
+                "password": "rNNoz"
+            },
+            {
+                "id": 9,
+                "email": "JPlanty@risus.org",
+                "username": "BBlalock",
+                "password": "AEuRY"
+            },
+            {
+                "id": 10,
+                "email": "BRichardson@tortor.com",
+                "username": "TRuback",
+                "password": "ZnFCx"
+            }
+        ];
+
+        // table
+        var mytable = document.createElement("table");
+        document.querySelector("body").appendChild(mytable);
+
+        // thead
+        var mythead = document.createElement("thead");
+        mytable.appendChild(mythead);
+
+        mytheadtr = document.createElement("tr");
+        mythead.appendChild(mytheadtr);
+        data.forEach((element, index) => {
+            if (index == 0) {
+                for (a in element) {
+                    var mytheadth = document.createElement("th");
+                    mytheadth.innerHTML = a;
+                    mytheadtr.appendChild(mytheadth);
+                }
+            }
+        });
+
+        // tbody
+        var mytbody = document.createElement("tbody");
+        mytable.appendChild(mytbody);
+
+
+        var filteredUsers=[];
+        function displayUsers(data) {
+            mytbody.innerHTML="";
+            data.forEach((element, i) => {
+                // mytbodytr = document.createElement("tr");
+                // for(a in element){
+                //     mytbodytd = document.createElement("td");
+                //     mytbodytd.innerHTML = element[a];
+                //     mytbodytr.appendChild(mytbodytd);
+                // }
+                // mytbody.appendChild(mytbodytr);
+
+                mytbodytr = document.createElement("tr");
+                Object.values(element).forEach((element) => {
+                    mytbodytd = document.createElement("td");
+                    mytbodytd.innerHTML = element;
+                    mytbodytr.appendChild(mytbodytd);
+                    mytbody.appendChild(mytbodytr);
+                });
+
+                myeditTd = document.createElement("td");
+                myeditbtn = document.createElement("button");
+                myeditbtn.innerHTML = "EDIT";
+                myeditTd.appendChild(myeditbtn);
+                mytbodytr.appendChild(myeditTd);
+
+                mydeleteTd = document.createElement("td");
+                mydeletebtn = document.createElement("button");
+                mydeletebtn.setAttribute("onclick", "deleteUser(" + i + ")");
+                mydeletebtn.innerHTML = "DELETE";
+                mydeleteTd.appendChild(mydeletebtn);
+                mytbodytr.appendChild(mydeleteTd);
+            });
+
+        }
+        function deleteUser(i) {
+            if (filteredUsers.length == 0) {
+                filteredUsers = data.filter((user, index) => {
+                    return user.id !== data[i].id;
+                });
+            }
+            else{
+                filteredUsers = filteredUsers.filter((user, index) => {
+                    return user.id !== filteredUsers[i].id;
+                });
+            }
+            displayUsers(filteredUsers);
+        }
+
+        displayUsers(data);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <label for="fname">firstName : 
+            <input type="text" name="" id="fname">
+        </label> <br><br>
+        <label for="lname">lastName : 
+            <input type="text" name="" id="lname">
+        </label> <br><br>
+        <label for="gender">Gender : <br>
+            <input type="radio" name="gender" id="" value="Male"> Male<br>
+            <input type="radio" name="gender" id="" value="Female"> Female
+        </label><br><br>
+        <label for="">Subjects : <br>
+            <input type="checkbox" name="subject" value="Maths" id="">Maths <br>
+            <input type="checkbox" name="subject" value="Social" id="">Social <br>
+            <input type="checkbox" name="subject" value="Science" id="">Science <br>
+            <input type="checkbox" name="subject" value="English" id="">English <br>
+            <input type="checkbox" name="subject" value="Telugu" id="">Telugu <br>
+        </label><br>
+
+        <label for="">Dropdown for Gender:
+            <select name="" id="" multiple>
+                <option value="">--select Gender--</option>
+                <option name = "dropdownGender" value="Male">Male</option>
+                <option name = "dropdownGender" value="Female">Female</option>
+            </select>
+        </label><br><br>
+
+        <label for="">Select no of interviews attended : 
+            <input type="number" name="" id="number" min="0" max="20" value="0">
+        </label><br><br>
+        <label for="button">
+            <input type="button" onclick="userDetails()" value="Get Data">
+        </label> <br><br>
+
+        
+
+    </form>
+
+
+    <script>
+        var person ={
+            fname :"",
+            lname : "",
+            gender :"",
+            subjects :[],
+            dropdownGender :[],
+            InterviewsAttended:""
+        }
+        function userDetails(){
+            console.log("user details action is trigerring!!!!");
+            for(a in person){
+                if(a == "gender"){
+                    var genderLists = document.getElementsByName("gender");
+                    // console.log(genderLists)
+                    genderLists.forEach((element)=>{
+                        if(element.checked){
+                            person[a] = element.value;
+                        }
+                    })
+                }
+                else if(a == "subjects"){
+                    var subjectList = document.getElementsByName("subject");
+                    console.log(subjectList);
+                    subjectList.forEach((element)=>{
+                        if(element.checked){
+                            person[a].push(element.value);
+                            // console.log(element)
+                        }
+                    })
+                }
+                else if(a=="dropdownGender"){
+                    var dropdownGender =document.getElementsByName("dropdownGender");
+                    console.log(dropdownGender);
+                    dropdownGender.forEach((element)=>{
+                        if(element.selected){
+                            // console.log(person[a])
+                            person[a].push(element.value);
+                        }
+                    })
+                }
+                else if(a=="InterviewsAttended"){
+                    person[a] = document.getElementById("number").value;
+                }
+                else{
+                    person[a] = document.getElementById(a).value;
+                }
+                
+            }
+            console.log(person)
+        }
+        
+    </script>
+</body>
+</html>

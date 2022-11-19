@@ -1,0 +1,140 @@
+1.function printArray(arr) {
+  for (var i=0;i<arr.length;i++){
+    for(var j=0;j<arr[0].length;j++){
+      console.log(arr[i][j]);
+    }   
+  }
+}
+var arr = [[1, 2],
+           [3, 4],
+           [5, 6]];
+
+2.function deleteElement(arr, ele) {
+  for (var i=0;i<arr.length;i++){
+    if(arr[i]==ele){
+      arr.splice(i,1); 
+    }
+  }
+  return arr;
+}
+var arr = [23,56,4,78,5,63,45,210,56];
+arr = deleteElement(arr, 56)
+
+3.for(var i=0;i<5;i++){
+  setTimeout(()=>console.log(i), 5000);// 5 5 5 5 5
+}
+
+4.function numPower(num,pow) {
+  var res=1; 
+  for(var i=0;i<pow;i++){
+     res=res*num;
+  }
+  return res;
+}
+console.log(numPower(4,3));
+console.log(numPower(16,2));
+
+
+5.let jsonn=[
+  {
+    "id": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "email": "Sincere@april.biz",
+    "address": {
+      "street": "Kulas Light",
+      "suite": "Apt. 556",
+      "city": "Gwenborough",
+      "zipcode": "92998-3874",
+      "geo": {
+        "lat": "-37.3159",
+        "lng": "81.1496"
+      }
+    },
+    "phone": "1-770-736-8031 x56442",
+    "website": "hildegard.org",
+    "company": {
+      "name": "Romaguera-Crona",
+      "catchPhrase": "Multi-layered client-server neural-net",
+      "bs": "harness real-time e-markets"
+    }
+  }]
+
+jsonn.email 
+json.address,
+jsonn.phone
+
+
+6.const arrayOfOddNumbers = [1, 3, 5];
+arrayOfOddNumbers[100] = 199;
+console.log(arrayOfOddNumbers.length);
+
+7.How can you double elements of an array using reduce?
+
+8.if (time < 12) {
+    console.log("Good morning");
+} else if (time < 14) {
+    console.log("Good Afternoon");
+} else {
+    console.log("Good evening");
+}
+
+
+9.let employees = [
+    {
+        "id": 11,
+        "name":"Abhinav",
+        "salary":75000
+    },
+    {
+        "id": 2131,
+        "name":"Raj",
+        "salary":62000
+    },
+    {
+        "id": 3012,
+        "name":"Raj",
+        "salary":32000
+    }]
+let idsArray = []
+for(let i = 0; i< employees.length; i++){
+   idsArray.push(employees[i].id)
+}
+console.log(idsArray)
+
+10.let employees = [
+    {
+        "id": 11,
+        "name":"Abhinav",
+        "salary":75000
+    },
+    {
+        "id": 2131,
+        "name":"Raj",
+        "salary":62000
+    },
+    {
+        "id": 3012,
+        "name":"Raj",
+        "salary":32000
+    }]
+print names ,salaries and ids in seperate arrays 
+
+
+11.let employees = [
+    {
+        "id": 11,
+        "name":"Abhinav",
+        "salary":75000
+    },
+    {
+        "id": 2131,
+        "name":"Gaurav",
+        "salary":62000
+    },
+    {
+        "id": 3012,
+        "name":"Raj",
+        "salary":32000
+    }]
+find  avgage salary of 3.

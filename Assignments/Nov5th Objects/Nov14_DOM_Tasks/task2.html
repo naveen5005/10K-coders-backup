@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+        // http://filltext.com/?rows=10&fname={firstName}&lname={lastName}&tel={phone|format}&address={streetAddress}&city={city}&state={usState|abbr}&zip={zip}&pretty=true
+
+
+        var data = [
+            {
+                "fname": "Amalia",
+                "lname": "Labrucherie",
+                "tel": "(438)118-4017",
+                "address": "312 Sed Dr",
+                "city": "Patrick Afb",
+                "state": "NM",
+                "zip": 21822
+            },
+            {
+                "fname": "Yauma",
+                "lname": "Hambrick",
+                "tel": "(602)658-7558",
+                "address": "6467 Aliquam Ave",
+                "city": "Queen Creek",
+                "state": "NY",
+                "zip": 27189
+            },
+            {
+                "fname": "Deitric",
+                "lname": "Ritchie",
+                "tel": "(219)484-1363",
+                "address": "491 Sit Ln",
+                "city": "Freehold",
+                "state": "ID",
+                "zip": 91943
+            },
+            {
+                "fname": "Yvette",
+                "lname": "Odle",
+                "tel": "(300)327-2621",
+                "address": "3919 Sit Ave",
+                "city": "Fort Myers",
+                "state": "MD",
+                "zip": 72106
+            },
+            {
+                "fname": "Dorci'A",
+                "lname": "Mcmyne",
+                "tel": "(185)061-1881",
+                "address": "2233 Lectus Ave",
+                "city": "Raleigh",
+                "state": "IA",
+                "zip": 26537
+            },
+            {
+                "fname": "Charles",
+                "lname": "Costa",
+                "tel": "(386)184-3295",
+                "address": "1593 Facilisis Ct",
+                "city": "Vero Beach",
+                "state": "SC",
+                "zip": 96666
+            },
+            {
+                "fname": "Ron",
+                "lname": "Derkson",
+                "tel": "(994)277-6726",
+                "address": "5660 Tortor Rd",
+                "city": "Dinwiddie",
+                "state": "LA",
+                "zip": 92779
+            },
+            {
+                "fname": "Chris",
+                "lname": "Haft",
+                "tel": "(108)036-1616",
+                "address": "3059 Tincidunt Rd",
+                "city": "Clayton",
+                "state": "IA",
+                "zip": 63705
+            },
+            {
+                "fname": "Winnie",
+                "lname": "Beverage",
+                "tel": "(195)558-9466",
+                "address": "5055 Aliquam Dr",
+                "city": "Kelso",
+                "state": "TN",
+                "zip": 52143
+            },
+            {
+                "fname": "Effram",
+                "lname": "Chapman",
+                "tel": "(632)457-0011",
+                "address": "1659 Et Ln",
+                "city": "The Dalles",
+                "state": "KS",
+                "zip": 52984
+            }
+        ];
+
+        // table
+        var mytable = document.createElement("table");
+        document.querySelector("body").appendChild(mytable);
+
+        // thead
+        var mythead = document.createElement("thead");
+        mytable.appendChild(mythead);
+
+        mytheadtr = document.createElement("tr");
+        mythead.appendChild(mytheadtr);
+        data.forEach((element, index) => {
+            if (index == 0) {
+                for (a in element) {
+                    var mytheadth = document.createElement("th");
+                    mytheadth.innerHTML = a;
+                    mytheadtr.appendChild(mytheadth);
+                }
+            }
+        });
+
+        // tbody
+        mytbody = document.createElement("tbody");
+        mytable.appendChild(mytbody);
+
+
+
+        var filteredUsers = [];
+        function displayUsers(data) {
+            mytbody.innerHTML = "";
+            data.forEach((element, i) => {
+                mytbodytr = document.createElement("tr");
+
+                // for( a in element){
+                //     mytbodytd = document.createElement("td");
+                //     mytbodytd.innerHTML = element[a];
+                //     mytbodytr.appendChild(mytbodytd);
+                // }
+                // mytbody.appendChild(mytbodytr);
+
+                Object.values(element).forEach((element) => {
+                    // console.log(element)
+                    mytbodytd = document.createElement("td");
+                    mytbodytd.innerHTML = element;
+                    mytbodytr.appendChild(mytbodytd);
+                });
+                mytbody.appendChild(mytbodytr);
+
+                myeditTd = document.createElement("td");
+                myeditbtn = document.createElement("button");
+                myeditbtn.innerHTML = "EDIT";
+                myeditTd.appendChild(myeditbtn);
+                mytbodytr.appendChild(myeditTd);
+
+                mydeleteTd = document.createElement("td");
+                mydeletebtn = document.createElement("button");
+                mydeletebtn.setAttribute("onclick", "deleteUser(" + i + ")");
+                mydeletebtn.innerHTML = "DELETE";
+                mydeleteTd.appendChild(mydeletebtn);
+                mytbodytr.appendChild(mydeleteTd);
+            });
+
+        }
+        function deleteUser(i) {
+            console.log("Delete user called : ", i);
+            if (filteredUsers.length == 0) {
+                filteredUsers = data.filter((user, index) => {
+                    return user.state !== data[i].state;
+                });
+            }
+            else {
+                filteredUsers = filteredUsers.filter((user, index) => {
+                    return user.state !== filteredUsers[i].state;
+                });
+            }
+            displayUsers(filteredUsers);
+        }
+
+        displayUsers(data);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page 1</title>
+</head>
+<body>
+    <fieldset>
+        <legend>Registration Details</legend>
+        <form action="">
+            <table>
+                <tr>
+                    <td>
+                        <label for="">University : </label>
+                    </td>
+                    <td></td>
+                    <td>
+                        <input type="text" name="" id="University">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Institute : </label>
+                    </td>
+                    <td></td>
+                    <td>
+                        <input type="text" name="" id="Insititute">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Branch : </label>
+                    </td>
+                    <td></td>
+                    <td>
+                        <select name="" id="">
+                            <option name="dropdown" value="">--select the branch--</option>
+                            <option name="dropdown" value="ECE">ECE</option>
+                            <option name="dropdown" value="EEE">EEE</option>
+                            <option name="dropdown" value="CSE">CSE</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Degree : </label>
+                    </td>
+                    <td></td>
+                    <td>
+                        <select name="" id="">
+                            <option value="">--select the degree--</option>
+                            <option value="Associate">Associate</option>
+                            <option value="Bachelor">Bachelor</option>
+                            <option value="Graduate">Graduate</option>
+                            <option value="Professional">Professional</option>
+                        </select>
+                        <input type="radio" name="" id="">Persuing <input type="radio" name="" id="">Completed
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Average CPI : </label>
+                    </td>
+                    <td></td>
+                    <td>
+                        <input type="text" name="" id="AverageCPI">Upto<input type="text" name="" id="AverageCPI222"> Th Semester
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Experience : </label>
+                    </td>
+                    <td></td>
+                    <td>
+                        <input type="text" name="" id="Experience">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Your Website or Blog : </label>
+                    </td>
+                    <td></td>
+                    <td>
+                        <input type="text" name="" id="WebSite">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" onclick="userDetails()" value="Get Details">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </fieldset>
+
+
+    <script>
+        var person ={
+            University :"",
+            Insititute :"",
+            Branch :"",
+            Degree :"",
+            AverageCPI :"",
+            Experience :"",
+            WebSite :""
+        }
+
+        // console.log(person)
+        function userDetails(){
+            // person["University"]=document.getElementById("uname").value;
+            // person["Insitite"] = document.getElementById("iname").value;
+            // person["Branch"] = 
+            // // for(a in person){
+            // //     person[a]=document.getElementById(a).value;
+            // // }
+            // console.log(person)
+
+            for(a in person){
+                if(a == "Branch"){
+
+                }
+                else if(a=="Degree"){
+
+                }
+                else{
+                    person[a] = document.getElementById(a).value;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

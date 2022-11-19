@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 5</title>
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // https://fakestoreapi.com/carts
+
+        var data = [
+            {
+                "id": 1,
+                "userId": 1,
+                "date": "2020-03-02T00:00:02.000Z",
+                "products": [
+                    {
+                        "productId": 1,
+                        "quantity": 4
+                    },
+                    {
+                        "productId": 2,
+                        "quantity": 1
+                    },
+                    {
+                        "productId": 3,
+                        "quantity": 6
+                    }
+                ],
+                "__v": 0,
+            },
+            { "id": 2, "userId": 1, "date": "2020-01-02T00:00:02.000Z", "products": [{ "productId": 2, "quantity": 4 }, { "productId": 1, "quantity": 10 }, { "productId": 5, "quantity": 2 }], "__v": 0 }, { "id": 3, "userId": 2, "date": "2020-03-01T00:00:02.000Z", "products": [{ "productId": 1, "quantity": 2 }, { "productId": 9, "quantity": 1 }], "__v": 0 }, { "id": 4, "userId": 3, "date": "2020-01-01T00:00:02.000Z", "products": [{ "productId": 1, "quantity": 4 }], "__v": 0 }, { "id": 5, "userId": 3, "date": "2020-03-01T00:00:02.000Z", "products": [{ "productId": 7, "quantity": 1 }, { "productId": 8, "quantity": 1 }], "__v": 0 }, { "id": 6, "userId": 4, "date": "2020-03-01T00:00:02.000Z", "products": [{ "productId": 10, "quantity": 2 }, { "productId": 12, "quantity": 3 }], "__v": 0 }, { "id": 6, "userId": 8, "date": "2020-03-01T00:00:02.000Z", "products": [{ "productId": 18, "quantity": 1 }], "__v": 0 }]
+
+        // table
+        var mytable = document.createElement("table");
+        document.querySelector("body").appendChild(mytable);
+
+        // thead
+        var mythead = document.createElement("thead");
+        mytable.appendChild(mythead);
+
+        mytheadtr = document.createElement("tr");
+        mythead.appendChild(mytheadtr);
+        data.forEach((element, index) => {
+            if (index == 0) {
+                for (a in element) {
+                    var mytheadth = document.createElement("th");
+                    mytheadth.innerHTML = a;
+                    mytheadtr.appendChild(mytheadth);
+                }
+            }
+        });
+
+
+
+        // tbody
+        var mytbody = document.createElement("tbody");
+        mytable.appendChild(mytbody);
+
+        // data.forEach((element) => {
+        //     mytbodytr = document.createElement("tr");
+        //     for (a in element) {
+        //         if (a === "products") {
+        //             element[a].forEach((item)=>{
+        //                 for( b in item){
+        //                     console.log(b)
+        //                 }
+        //             })
+        //         }
+        //         else if(a === "__v"){
+        //             mytbodytd = document.createElement("td");
+        //             mytbodytd.innerHTML = element[a];
+        //             mytbodytr.appendChild(mytbodytd);
+        //         }
+        //         else {
+        //             mytbodytd = document.createElement("td");
+        //             mytbodytd.innerHTML = element[a];
+        //             mytbodytr.appendChild(mytbodytd);
+        //         }
+
+        //     }
+        //     mytbody.appendChild(mytbodytr);
+
+        //     // mytbodytr = document.createElement("tr");
+        //     // Object.values(element).forEach((element) => {
+        //     //     mytbodytd = document.createElement("td");
+        //     //     mytbodytd.innerHTML = element;
+        //     //     mytbodytr.appendChild(mytbodytd);
+        //     //     mytbody.appendChild(mytbodytr);
+        //     // });
+        // });
+
+        var filteredData = [];
+        function displayUsers(data) {
+            mytbody.innerHTML="";
+            data.forEach((element,i) => {
+                var mytr = document.createElement("tr");
+                for (a in element) {
+                    mytd = document.createElement("td");
+                    if (a !== "products" && a !== "__v") {
+                        mytd.innerHTML = element[a];
+                        mytr.appendChild(mytd);
+                    }
+                    else if (a == "products") {
+                        myProdtable = document.createElement("table");
+                        element[a].forEach((element) => {
+                            var myProdTr = document.createElement("tr");
+                            for (b in element) {
+                                var myprodtd = document.createElement("td");
+                                myprodtd.innerHTML = b + " : " + element[b];
+                                myProdTr.appendChild(myprodtd);
+                            }
+                            myProdtable.appendChild(myProdTr);
+                        })
+                        mytd.appendChild(myProdtable);
+                        mytr.appendChild(mytd)
+                    }
+                    else {
+                        mytd = document.createElement("td");
+                        mytd.innerHTML = element[a];
+                        mytr.appendChild(mytd);
+                    }
+                }
+                mytbody.appendChild(mytr);
+
+                myeditTd = document.createElement("td");
+                myeditbtn = document.createElement("button");
+                myeditbtn.innerHTML = "EDIT"
+                // myeditbtn.setAttribite("o")
+                myeditTd.appendChild(myeditbtn);
+                mytr.appendChild(myeditTd);
+
+
+                mydeleteTD = document.createElement("td");
+                mydeletebtn = document.createElement("button");
+                mydeletebtn.innerHTML = "DELETE";
+                mydeletebtn.setAttribute("onclick", "deleteUser(" + i + ")");
+                mydeleteTD.appendChild(mydeletebtn);
+                mytr.appendChild(mydeleteTD);
+            });
+        }
+
+        
+        function deleteUser(i) {
+            console.log("Delete done for the index : ", i)
+            if (filteredData.length == 0) {
+                filteredData = data.filter((user, index) => {
+                    return  user.id !== data[i].id;
+                })
+            }
+            else {
+                filteredData = filteredData.filter((user, index) => {
+                    return  user.id !== filteredData[i].id;
+                })
+            }
+            displayUsers(filteredData);
+        }
+        displayUsers(data);
+    </script>
+</body>
+
+</html>

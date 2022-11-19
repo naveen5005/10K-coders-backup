@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        tr,
+        td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        td {
+            text-align: center;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table></table>
+    <script>
+        // http://filltext.com/?rows=10&fname={firstName}&lname={lastName}&pretty=true
+
+        var data = [
+            {
+                "fname": "Maureen",
+                "lname": "Ward"
+            },
+            {
+                "fname": "Dante",
+                "lname": "Colin"
+            },
+            {
+                "fname": "Julie",
+                "lname": "Malstrom"
+            },
+            {
+                "fname": "Heather",
+                "lname": "Ziegler"
+            },
+            {
+                "fname": "Lupita",
+                "lname": "Hettrick"
+            },
+            {
+                "fname": "Carla",
+                "lname": "Bubel"
+            },
+            {
+                "fname": "Tasha",
+                "lname": "Colon"
+            },
+            {
+                "fname": "Verlene",
+                "lname": "Mettais"
+            },
+            {
+                "fname": "Gary",
+                "lname": "Warrenfeltz"
+            },
+            {
+                "fname": "Jephter",
+                "lname": "Azcunaga"
+            }
+        ];
+
+        // thead
+        var myTable = document.createElement("table");
+        document.body.appendChild(myTable);
+
+        var mythead = document.createElement("thead");
+        document.querySelector("table").appendChild(mythead);
+
+        var mytheadtr = document.createElement("tr");
+        document.querySelector("thead").appendChild(mytheadtr);
+
+        data.forEach((element, index, arr) => {
+            if (index == 0) {
+                for (a in element) {
+                    // console.log(a);
+                    var th = document.createElement("th");
+                    th.innerHTML = a;
+                    mytheadtr.appendChild(th);
+                }
+            }
+        });
+
+        // var thArray = ["fname", "lname"];
+        // for (i = 0; i < thArray.length; i++) {
+        //     var th = document.createElement("th");
+        //     document.querySelector("tr").appendChild(th);
+        //     th.innerHTML = thArray[i];
+        // }
+
+
+        // tbody
+        var mytbody = document.createElement("tbody");
+        document.querySelector("table").appendChild(mytbody);
+
+        var filteredUsers = [];
+        function displayUsers(data) {
+            mytbody.innerHTML = ""
+            data.forEach((element, i) => {
+                var mytbodytr = document.createElement("tr");
+
+                var mytd1 = document.createElement("td");
+                mytd1.innerHTML = element.fname
+                mytbodytr.append(mytd1);
+
+                var mytd2 = document.createElement("td");
+                mytd2.innerHTML = element.lname
+                mytbodytr.append(mytd2);
+
+                document.querySelector("tbody").appendChild(mytbodytr);
+
+                // for(a in element){
+                //     var mytbodytd = document.createElement("td");
+                //     mytbodytd.innerHTML = element[a];
+                //     mytbodytr.appendChild(mytbodytd)
+                // }
+                // mytbody.appendChild(mytbodytr);
+
+
+                // Object.values(element).forEach((user)=>{
+                //     var mytbodytd = document.createElement("td");
+                //     mytbodytd.innerHTML = user;
+                //     mytbodytr.appendChild(mytbodytd);
+                // });
+                // mytbody.appendChild(mytbodytr);
+
+
+                myeditTd = document.createElement("td");
+                myeditbtn = document.createElement("button");
+                myeditbtn.innerHTML = "EDIT"
+                myeditbtn.setAttribute("onclick", "editUser(" + i + ")");
+                myeditTd.appendChild(myeditbtn);
+                mytbodytr.appendChild(myeditTd);
+
+                mydeleteTd = document.createElement("td");
+                mydeletebtn = document.createElement("button");
+                mydeletebtn.innerHTML = "DELETE";
+                mydeletebtn.setAttribute("onclick", "deleteUser(" + i + ")");
+                mydeleteTd.appendChild(mydeletebtn);
+                mytbodytr.appendChild(mydeleteTd)
+            });
+
+        }
+        function deleteUser(i) {
+            console.log("Delete User action performed");
+            if (filteredUsers.length == 0) {
+                filteredUsers = data.filter((user, index) => {
+                    // console.log(user)
+                    return user.fname !== data[i].fname;
+                });
+            }
+            else {
+                filteredUsers = filteredUsers.filter((user, index) => {
+                    // console.log(user)
+                    return user.fname !== filteredUsers[i].fname;
+                });
+            }
+            displayUsers(filteredUsers);
+        }
+
+        displayUsers(data);
+
+        function editUser(){
+            console.log("Edit action is triggered...!!!")
+        }
+
+    </script>
+</body>
+
+</html>
