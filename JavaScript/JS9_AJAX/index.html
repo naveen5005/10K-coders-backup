@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table,
+    td,
+    th {
+        border: 2px solid black;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <button onclick="getDataFromServer()">Get Data</button>
+    <br><br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>fname</th>
+                <th>lname</th>
+                <th>tel</th>
+                <th>address</th>
+                <th>city</th>
+                <th>state</th>
+                <th>zip</th>
+                <th>id</th>
+                <th>EDIT</th>
+                <th>DELETE</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var api_url_local = "http://localhost:3000/users"
+        var users = [];
+        function getDataFromServer() {
+            console.log("Action triggered...!")
+            var getdata = new XMLHttpRequest();
+            getdata.onreadystatechange = function () {
+                if (getdata.readyState === 4 && getdata.status === 200) {
+                    // console.log(getdata.response);
+                    users = JSON.parse(getdata.response);
+                    displayUsers(users);
+                }
+            }
+
+            // var api_url = "http://filltext.com/?rows=10&fname={firstName}&lname={lastName}&tel={phone|format}&address={streetAddress}&city={city}&state={usState|abbr}&zip={zip}&pretty=true"
+
+            getdata.open("GET", api_url_local);
+            getdata.send();
+        }
+        getDataFromServer();
+
+        function displayUsers(users) {
+            document.querySelector("tbody").innerHTML = "";
+            users.forEach((element, i) => {
+                myTr = document.createElement("tr");
+                for (a in element) {
+                    myTd = document.createElement("td");
+                    myTd.innerHTML = element[a];
+                    myTr.appendChild(myTd);
+                }
+
+                myeditTD = document.createElement("td");
+                myeditBtn = document.createElement("button");
+                myeditBtn.innerHTML = "EDIT"
+                myeditBtn.setAttribute("onclick", "editUser()");
+                myeditTD.appendChild(myeditBtn);
+                myTr.appendChild(myeditTD);
+
+                mydelteTD = document.createElement("td");
+                mydeleteBtn = document.createElement("button");
+                mydeleteBtn.innerHTML = "DELETE"
+                mydeleteBtn.setAttribute("onclick", "deleteUser(" + i + ")");
+                mydelteTD.appendChild(mydeleteBtn);
+                myTr.appendChild(mydelteTD);
+
+                document.querySelector("tbody").appendChild(myTr);
+            })
+        }
+
+        function deleteUser(i) {
+            console.log("delete action triggered...!!!", i)
+            // console.log(api_url_local + "/" + users[i].id);
+            var delUser = new XMLHttpRequest();
+            delUser.onreadystatechange = function () {
+                if (delUser.readyState == 4 && deleteUser.status == 200) {
+                    getDataFromServer();
+                }
+            };
+            delUser.open("DELETE", api_url_local + "/" + users[i].id);
+            // console.log(api_url_local + "/" + users[i].id);
+            delUser.send();
+        }
+    </script>
+</body>
+
+</html>

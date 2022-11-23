@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM APPLICATION 2</title>
+    <style>
+        table,td,th{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        td{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="formControl">
+        <form action="">
+            <label for="name">
+                Name : <br>
+                <input type="text" name="" id="name" placeholder="Name">
+            </label> <br><br>
+            <label for="username">
+                Username : <br>
+                <input type="text" name="" id="username" placeholder="Username">
+            </label> <br><br>
+            <label for="email">
+                Email : <br>
+                <input type="email" name="" id="email" placeholder="Email">
+            </label> <br><br>
+            <label for="password">
+                Password : <br>
+                <input type="password" name="" id="password" placeholder="Password">
+            </label> <br><br>
+            <label for="confirmPassword">
+                Password : <br>
+                <input type="password" name="" id="confirmPassword" placeholder="confirm Password">
+            </label> <br><br>
+            <label for="message">
+                Message : <br>
+                <textarea name="" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+            </label> <br><br>
+            
+            <input type="button" id="#sendData" onclick="readData()"  value="Send">
+            <input type="button" id="#updateData" onclick="updateData()" value="Update">
+        </form>
+    </div> <br><br>
+    <div id="userTable">
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>Password</td>
+                    <td>ConfirmPassword</td>
+                    <td>Message</td>
+                    <th>EDIT Functionality</th>
+                    <th>DELETE Functionality</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="./create.js"></script>
+    <script src="./read.js"></script>
+    <script src="./update.js"></script>
+    <script src="./delete.js"></script>
+</body>
+</html>

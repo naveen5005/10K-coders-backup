@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,tr,td{
+            border : 2px solid black;
+            border-collapse: collapse;
+        }
+        td{
+            padding: 10px;
+        }
+        #formControl{
+            width: 20%;
+            float: left;
+        }
+        #userTable{
+            width: 80%;
+            float: left;
+        }
+        #updateBtn{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="formControl">
+        <form action="">
+            <label for="university">University : </label>
+            <input type="text" name="" id="university"> <br><br>
+
+            <label for="institute">Institute : </label>
+            <input type="text" id="institute"> <br><br>
+
+            <label for="branch">Branch : </label>
+            <select name="" id="branch">
+                <option value="">select the branch</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="CSE">CSE</option>
+                <option value="MECH">MECH</option>
+                <option value="IT">IT</option>
+                <option value="ECM">ECM</option>
+            </select> <br><br>
+
+            <label for="degree">Degree</label>
+            <select name="" id="degree">
+                <option value="">select the degree</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="Masters">Masters</option>
+                <option value="Gradute">Gradute</option>
+            </select>
+
+            <input type="radio" name="status" value="pursuing" id="pursuing">pursuing
+            <input type="radio" name="status" value="completed" id="completed">Completed<br><br>
+
+            <label for="avgCPI">Average CPI : </label>
+            <input type="number" name="" id="avgCPI">
+
+            Upto <input type="number" name="" id="semesterNumber">Th Semester <br><br>
+
+            <label for="experience">Experience : </label>
+            <input type="number" name="" id="experience"> <br><br>
+
+            <label for="website">Your Website or Blog : </label>
+            <input type="text" name="" id="website" value="https://"> <br><br>
+
+            <input type="button" id="addBtn" onclick="addValues()" value="Add Data">
+            <input type="button" id="updateBtn" onclick="updateValues()" value="Update Data">
+        </form>
+    </div>
+    <div id="userTable">
+        <table>
+            <thead>
+                <tr>
+                    <td>University</td>
+                    <td>institute</td>
+                    <td>branch</td>
+                    <td>degree</td>
+                    <td>status</td>
+                    <td>avgCPI</td>
+                    <td>semesterNumber</td>
+                    <td>experience</td>
+                    <td>website</td>
+                    <td>EDIT</td>
+                    <td>DELETE</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    
+    <script src="./create.js"></script>
+    <script src="./read.js"></script>
+    <script src="./update.js"></script>
+    <script src="./delete.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        #updateBtn{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tableContent">
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">id</th>
+                    <th rowspan="2">title</th>
+                    <th rowspan="2">price</th>
+                    <th rowspan="2">description</th>
+                    <th rowspan="2">category</th>
+                    <th rowspan="2">image</th>
+                    <th rowspan="1" colspan="2">rating</th>
+                    <th rowspan="2">EDIT</th>
+                    <th rowspan="2">DELETE</th>
+                </tr>
+                <tr>
+                    <th>rate</th>
+                    <th>count</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div> <br><br>
+    <div class="fomContent">
+        <label for="id">Id : </label>
+        <input type="number" name="" id="id" disabled> <br><br>
+        <label for="title">Tilte : </label>
+        <input type="text" name="" id="title"> <br><br>
+        <label for="price">Price : </label>
+        <input type="number" name="" id="price"> <br><br>
+        <label for="description">Description</label>
+        <input type="text" name="" id="description"> <br><br>
+        <label for="category">Category</label>
+        <input type="text" name="" id="category"> <br><br>
+        <label for="image">Image : </label>
+        <input type="text" name="" id="image"><br><br>
+        <label for="rate">Rate : </label>
+        <input type="number" name="" id="rate"> <br><br>
+        <label for="count">Count : </label>
+        <input type="number" name="" id="count"> <br><br>
+
+        <input type="button" id="createBtn" onclick="createUser()" value="Create user">
+        <input type="button" id="updateBtn" onclick="updateUser()" value="update user">
+    </div>
+
+    <script>
+        var users2 = [];
+        var api_url_local = "http://localhost:3000/users2"
+        function getDataFromServer() {
+            var getdata = new XMLHttpRequest();
+            getdata.onreadystatechange = function () {
+                if (getdata.readyState === 4 && getdata.status === 200) {
+                    users2 = JSON.parse(getdata.response);
+                    displayUsers(users2);
+                    console.log(users2);
+                }
+            };
+            getdata.open("GET", api_url_local);
+            getdata.send();
+        }
+        getDataFromServer();
+
+        function editUser(i){
+            console.log("edit action triggered...",i)
+            var userToBeEdited = users2[i];
+            for(a in userToBeEdited){
+                if (a !== "rating") {
+                    document.getElementById(a).value=userToBeEdited[a];
+                }
+                else if (a == "rating") {
+                    for (b in userToBeEdited[a]) {
+                        document.getElementById(b).value = userToBeEdited[a][b];
+                    }
+                }
+            }
+            swapBtn(true);
+        }
+       
+        function updateUser(){
+            var updateUserDetails = readUserFromFOM();
+            var update = new XMLHttpRequest();
+            update.onreadystatechange = function(){
+                if(update.readyState === 4 && update.status === 200){
+                    getDataFromServer();
+                }
+            };
+            update.open("PUT",api_url_local+"/"+updateUserDetails.id);
+            update.setRequestHeader("Content-Type","application/json");
+            update.send(JSON.stringify(updateUserDetails));
+            swapBtn(false);
+        }
+        
+
+        function displayUsers(users) {
+            document.querySelector("tbody").innerHTML = ""
+            users.forEach((elelment, i) => {
+                myTr = document.createElement("tr");
+                for (a in elelment) {
+                    if (a !== "rating" && a !== "image") {
+                        myTd = document.createElement("td");
+                        myTd.innerHTML = elelment[a];
+                        myTr.appendChild(myTd);
+                    }
+                    else if (a == "image") {
+                        myTd = document.createElement("td");
+                        myImage = document.createElement("img");
+                        myImage.setAttribute("src", elelment[a]);
+                        myImage.style.width = "100px"
+                        myTd.appendChild(myImage);
+                        myTr.appendChild(myTd)
+                    }
+                    else if (a == "rating") {
+                        for (b in elelment[a]) {
+                            myTd = document.createElement("td");
+                            myTd.innerHTML = elelment[a][b];
+                            myTr.appendChild(myTd)
+                        }
+
+                    }
+
+                }
+                myeditTD = document.createElement("td");
+                myeditBtn = document.createElement("button");
+                myeditBtn.innerHTML = "EDIT"
+                myeditBtn.setAttribute("onclick", "editUser(" + i + ")");
+                myeditTD.appendChild(myeditBtn);
+                myTr.appendChild(myeditTD);
+
+                mydelteTD = document.createElement("td");
+                mydeleteBtn = document.createElement("button");
+                mydeleteBtn.innerHTML = "DELETE"
+                mydeleteBtn.setAttribute("onclick", "deleteUser(" + i + ")");
+                mydelteTD.appendChild(mydeleteBtn);
+                myTr.appendChild(mydelteTD);
+                document.querySelector("tbody").appendChild(myTr);
+                document.querySelector("tbody").appendChild(myTr)
+            })
+        }
+
+        function deleteUser(i) {
+            console.log("Delete action triggered...", i)
+            var delUser = new XMLHttpRequest();
+            delUser.onreadystatechange = function () {
+                if (delUser.readyState === 4 && delUser.status === 200) {
+                    getDataFromServer();
+                }
+            };
+            delUser.open("DELETE", api_url_local + "/" + users2[i].id);
+            delUser.send();
+        }
+
+        function createUser() {
+            var newUser = readUserFromFOM();
+            var createNewUser = new XMLHttpRequest();
+            createNewUser.onreadystatechange = function () {
+                if (createNewUser.readyState === 4 && createNewUser.status === 201) {
+                    getDataFromServer();
+                }
+            }
+            createNewUser.open("POST", api_url_local);
+            createNewUser.setRequestHeader("Content-Type", "application/json");
+            createNewUser.send(JSON.stringify(newUser))
+        }
+        function readUserFromFOM() {
+            var user = {
+                id: "",
+                title: "",
+                price: "",
+                description: "",
+                category: "",
+                image: "",
+                rating: {
+                    rate: "",
+                    count: ""
+                }
+            }
+            for (a in user) {
+                if (a !== "rating") {
+                    user[a] = document.getElementById(a).value;
+                }
+                else if (a == "rating") {
+                    for (b in user[a]) {
+                        user[a][b] = document.getElementById(b).value;
+                    }
+                }
+            }
+            return user;
+        }
+        function swapBtn(val){
+            if(val){
+                document.getElementById("createBtn").style.display = "none";
+                document.getElementById("updateBtn").style.display = "block";
+            }
+            else{
+                document.getElementById("createBtn").style.display = "block";
+                document.getElementById("updateBtn").style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

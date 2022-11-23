@@ -152,26 +152,38 @@
             });
 
         }
+        console.log(filteredUsers.length)
         function deleteUser(i) {
             console.log("Delete User action performed");
+            // if (filteredUsers.length == 0) {
+            //     filteredUsers = data.filter((user, index) => {
+            //         // console.log(user)
+            //         return user.fname !== data[i].fname;
+            //     });
+            // }
+            // else {
+            //     filteredUsers = filteredUsers.filter((user, index) => {
+            //         // console.log(user)
+            //         return user.fname !== filteredUsers[i].fname;
+            //     });
+            // }
+
             if (filteredUsers.length == 0) {
                 filteredUsers = data.filter((user, index) => {
-                    // console.log(user)
-                    return user.fname !== data[i].fname;
-                });
+                    return user.fname !== data[i].fname
+                })
             }
             else {
                 filteredUsers = filteredUsers.filter((user, index) => {
-                    // console.log(user)
-                    return user.fname !== filteredUsers[i].fname;
-                });
+                    return user.fname !== filteredUsers[i].fname
+                })
             }
             displayUsers(filteredUsers);
         }
 
         displayUsers(data);
 
-        function editUser(){
+        function editUser() {
             console.log("Edit action is triggered...!!!")
         }
 

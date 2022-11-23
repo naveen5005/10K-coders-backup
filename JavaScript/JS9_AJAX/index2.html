@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        #updateData{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <button onclick="getDataFromServer()">Get Data</button> <br><br> -->
+    <div class="tableContent content">
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>email</td>
+                    <td>username</td>
+                    <td>password</td>
+                    <td>EDIT</td>
+                    <td>DELETE</td>
+                </tr>
+            </thead>
+            <tbody>
+    
+            </tbody>
+        </table>
+    </div> <br><br><br>
+
+    <div class="formContent content">
+        <form action="">
+            <label for="id">ID : </label>
+            <input type="number" name="" id="id" disabled><br><br>
+            <label for="email">Email : </label>
+            <input type="email" name="" id="email"><br><br>
+            <label for="username">Username : </label>
+            <input type="text" name="" id="username"> <br><br>
+            <label for="password">Password</label>
+            <input type="password" name="" id="password"><br><br>
+
+            <input type="button" id="createData" onclick="createUser()" value="Create Data">
+            <input type="button" id="updateData" onclick="updateUser()" value="Update Data">
+        </form>
+    </div>
+
+
+    <script>
+        var api_url_local = "http://localhost:3000/users"
+        var users = [];
+
+        function getDataFromServer() {
+            console.log("Action triggered...!")
+            var newUser = new XMLHttpRequest();
+            newUser.onreadystatechange = function () {
+                if (newUser.readyState === 4 && newUser.status === 200) {
+                    users = JSON.parse(newUser.response);
+                    // console.log(newUser.response)
+                    displayUsers(users);
+                }
+            }
+            newUser.open("GET", api_url_local)
+            newUser.send()
+        }
+        getDataFromServer();
+        function displayUsers(users) {
+            document.querySelector("tbody").innerHTML="";
+            users.forEach((element, i) => {
+                myTr = document.createElement("tr");
+                for (a in element) {
+                    myTd = document.createElement("td");
+                    myTd.innerHTML = element[a];
+                    myTr.appendChild(myTd);
+                }
+
+                myeditTD = document.createElement("td");
+                myeditBtn = document.createElement("button");
+                myeditBtn.innerHTML = "EDIT"
+                myeditBtn.setAttribute("onclick", "editUser(" + i + ")");
+                myeditTD.appendChild(myeditBtn);
+                myTr.appendChild(myeditTD);
+
+                mydelteTD = document.createElement("td");
+                mydeleteBtn = document.createElement("button");
+                mydeleteBtn.innerHTML = "DELETE"
+                mydeleteBtn.setAttribute("onclick", "deleteUser(" + i + ")");
+                mydelteTD.appendChild(mydeleteBtn);
+                myTr.appendChild(mydelteTD);
+                document.querySelector("tbody").appendChild(myTr);
+            })
+        }
+
+        function deleteUser(i) {
+            console.log("DELETE action triggered...!!!",i)
+            var delUser = new XMLHttpRequest();
+            delUser.onreadystatechange = function () {
+                if (delUser.readyState === 4 && deleteUser.status === 200) {
+                    getDataFromServer();
+                }
+            };
+            delUser.open("DELETE", api_url_local + "/" + users[i].id);
+            delUser.send();
+        }
+
+        function editUser(i) {
+            var userToBeEdited = users[i];
+            for(a in userToBeEdited){
+                document.getElementById(a).value = userToBeEdited[a];
+            }
+            swapButton(false)
+        }
+
+        function updateUser(){
+            var updateUserDetails = readUserFromFOM();
+            var update = new XMLHttpRequest();
+            update.onreadystatechange=function(){
+                if(update.readyState === 4 && update.status === 200){
+                    getDataFromServer();
+                }
+            }
+            update.open("PUT",api_url_local+"/"+updateUserDetails.id);
+            update.setRequestHeader("Content-Type","application/json");
+            update.send(JSON.stringify(updateUserDetails))
+            swapButton(false);
+        }
+
+        function createUser(){
+            var newUser = readUserFromFOM();
+            console.log(newUser);
+            var createnewUser = new XMLHttpRequest();
+            createnewUser.onreadystatechange=function(){
+                if(createnewUser.readyState === 4 && createnewUser.status === 201){
+                    getDataFromServer();
+                }
+            }
+            createnewUser.open("POST",api_url_local);
+            createnewUser.setRequestHeader("Content-Type","application/json");
+            createnewUser.send(JSON.stringify(newUser));
+        }
+
+        function readUserFromFOM(){
+            var user ={
+                id:"",
+                email:"",
+                username:"",
+                password:"",
+            }
+            for(a in user){
+                user[a]=document.getElementById(a).value;
+            }
+            return user;
+            // console.log(user)
+        }
+        function swapButton(val){
+            if(val){
+                document.getElementById("updateData").style.display = "none"
+                document.getElementById("createData").style.display = "block"
+            }
+            else{
+                document.getElementById("updateData").style.display = "block"
+                document.getElementById("createData").style.display = "none"
+            }
+        }
+    </script>
+</body>
+
+</html>

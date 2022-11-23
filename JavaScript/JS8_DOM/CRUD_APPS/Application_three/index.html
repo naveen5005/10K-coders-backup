@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application three</title>
+    <style>
+        table,th,td{
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        #updateBtn{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="">
+            <label for="fname">First Name : </label>
+            <input type="text" name="" id="fname"> <br><br>
+            <label for="lname">Last Name : </label>
+            <input type="text" name="" id="lname"> <br><br>
+            <label for="dob">Date of Birth : </label>
+            <input type="date" name="" id="dob"> <br><br>
+            <label for="email">Email :</label>
+            <input type="email" name="" id="email"><br><br>
+            <label for="mnumber">Mobile Number : </label>
+            <input type="text" name="" id="mnumber"> <br><br>
+            <input type="button" id="addBtn" onclick="readData()" value="Submit">
+            <input type="button" id="updateBtn" onclick="updateUser()" value="Update"> <br><br>
+        </form>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date od birth</th>
+                    <th>Email Id</th>
+                    <th>Mobile Number</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="./create.js"></script>
+    <script src="./read.js"></script>
+    <script src="./update.js"></script>
+    <script src="./delete.js"></script>
+</body>
+</html>
