@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        .tablecontent,
+        .formContent {
+            float: left;
+            margin-left: 100px;
+        }
+
+        #updatedata,.username {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="formContent">
+        <form action="">
+            <label for="id">ID : </label>
+            <input type="number" name="" id="id" disabled> <br><br>
+            <label for="uname">Username : </label>
+            <input type="text" name="" id="uname" onkeyup="validations()"> <br><br>
+            <p class="username" style="color:red;">Enter 6 min characters...!!!</p>
+            <label for="pwd">Password : </label>
+            <input type="password" name="" id="pwd" onkeyup="validations()"> <br><br>
+            <label for="email">Email : </label>
+            <input type="email"  name="" id="email"> <br><br> 
+            <!-- pattern="[a-z]{1-}[@]{1}[.]{1}[com]{1}" -->
+            <input type="button" id="createdata" onclick="createData()" value="Create Data" disabled>
+            <input type="button" id="updatedata" onclick="updateUser()" value="Update Data">
+        </form>
+    </div>
+    <div class="tablecontent">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>EDIT</th>
+                    <th>UPDATE</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+        var users = [];
+        var local_api_url = "http://localhost:3000/users3";
+
+        function createData() {
+            var newUser = readUserFromFOM();
+            var createnewUser = new XMLHttpRequest();
+            createnewUser.onreadystatechange = function () {
+                if (createnewUser.readyState === 4 && createnewUser.status === 201) {
+                    // users = JSON.parse(createnewUser.response);
+                    // displayUsers(users)
+                    getDataFromServer();
+                }
+            }
+            createnewUser.open("POST", local_api_url);
+            createnewUser.setRequestHeader("Content-Type", "application/json");
+            createnewUser.send(JSON.stringify(newUser));
+            // console.log(users)
+        }
+        console.log(users, typeof (users))
+        // createData();
+
+        function getDataFromServer() {
+            var getdata = new XMLHttpRequest();
+            getdata.onreadystatechange = function () {
+                if (getdata.readyState === 4 && getdata.status === 200) {
+                    users = JSON.parse(getdata.response);
+                    displayUsers(users)
+                }
+            };
+            getdata.open("GET", local_api_url);
+            getdata.send();
+        }
+        getDataFromServer();
+
+        function readUserFromFOM() {
+            var user = {
+                id: "",
+                uname: "",
+                pwd: "",
+                email: ""
+            }
+            for (a in user) {
+                user[a] = document.getElementById(a).value;
+            }
+            // console.log(user);
+            return user;
+        }
+
+        function displayUsers(users) {
+            document.querySelector("tbody").innerHTML = "";
+            users.forEach((element, i) => {
+                myTr = document.createElement("tr");
+                for (a in element) {
+                    myTd = document.createElement("td");
+                    myTd.innerHTML = element[a];
+                    myTr.appendChild(myTd)
+                }
+
+                myeditTD = document.createElement("td");
+                myeditBtn = document.createElement("button");
+                myeditBtn.innerHTML = "EDIT"
+                myeditBtn.setAttribute("onclick", "editUser(" + i + ")");
+                myeditTD.appendChild(myeditBtn);
+                myTr.appendChild(myeditTD);
+
+                mydelteTD = document.createElement("td");
+                mydeleteBtn = document.createElement("button");
+                mydeleteBtn.innerHTML = "DELETE"
+                mydeleteBtn.setAttribute("onclick", "deleteUser(" + i + ")");
+                mydelteTD.appendChild(mydeleteBtn);
+                myTr.appendChild(mydelteTD);
+                document.querySelector("tbody").appendChild(myTr);
+            });
+
+        }
+
+        function deleteUser(i) {
+            var deleteData = new XMLHttpRequest();
+            deleteData.onreadystatechange = function () {
+                if (deleteData.readyState === 4 && deleteData.status === 200) {
+                    getDataFromServer();
+                }
+            };
+            deleteData.open("DELETE", local_api_url + "/" + users[i].id);
+            deleteData.send();
+        }
+        function editUser(i) {
+            var user = users[i];
+            for (a in user) {
+                document.getElementById(a).value = user[a];  
+                // user[a] = document.getElementById(a).value;  // doubt i need to ask to Murali sir
+            }
+            swapBtn(true);
+        }
+
+        function updateUser() {
+            var user = readUserFromFOM();
+            var updateUserDetails = new XMLHttpRequest();
+            updateUserDetails.onreadystatechange = function () {
+                if (updateUserDetails.readyState === 4 && updateUserDetails === 200) {
+                    getDataFromServer();
+                }
+            };
+            updateUserDetails.open("PUT", local_api_url + "/" + user.id);
+            updateUserDetails.setRequestHeader("Content-Type", "application/json");
+            updateUserDetails.send(JSON.stringify(user));
+            swapBtn(false);
+        }
+        function swapBtn(val) {
+            if (val) {
+                document.getElementById("updatedata").style.display = "block";
+                document.getElementById("createdata").style.display = "none";
+            }
+            else {
+                document.getElementById("updatedata").style.display = "none";
+                document.getElementById("createdata").style.display = "block";
+            }
+        }
+
+
+        function validations() {
+            var user = readUserFromFOM();
+            var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            console.log(user)
+            for (a in user) {
+                user[a] = document.getElementById(a).value;
+            }
+            if (user.uname.length >= 6 && user.pwd.length >= 6 && emailPattern.test(user[a])) {
+                document.getElementById("createdata").removeAttribute("disabled");
+            }
+            else {
+                document.getElementById("createdata").setAttribute("disabled", true);
+                document.getElementById("username").style.display="block";
+            }
+
+        }
+    </script>
+</body>
+
+</html>

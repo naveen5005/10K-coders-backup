@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. Synchronus - step by step execution process
+        // 2. ASynchronus - Asynchronous programming is a technique that enables your program to start a potentially long-running task and still be able to be responsive to other events while that task runs, rather than having to wait until that task has finished. Once that task has finished, your program is presented with the result.
+
+        var users = [];
+        function getDataFromServer(){
+            var getData = new XMLHttpRequest();
+            getData.onreadystatechange = function(){
+                if(getData.readyState === 4 && getData.status === 200){
+                    users = JSON.parse(getData.response);
+                    console.log("get data from server",users)
+                }
+            };
+            getData.open("GET","http://filltext.com/?rows=10&fname={firstName}&lname={lastName}&pretty=true");
+            getData.send();
+        }
+
+        function displayUsers(){
+            console.log("outside the function",users);
+        }
+        getDataFromServer();
+        displayUsers();
+
+        // to overcome the issue pass the second function as argument and call the function
+
+        var users1 = [];
+        function getDataFromServer(displayUsers){
+            var getData = new XMLHttpRequest();
+            getData.onreadystatechange = function(){
+                if(getData.readyState === 4 && getData.status === 200){
+                    users1 = JSON.parse(getData.response);
+                    console.log("get data from server",users1)
+                    displayUsers();
+                }
+            };
+            getData.open("GET","http://filltext.com/?rows=10&fname={firstName}&lname={lastName}&pretty=true");
+            getData.send();
+        }
+
+        function displayUsers(){
+            console.log("outside the function",users1);
+        }
+        getDataFromServer(displayUsers);
+        displayUsers();
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Difference between VAR, LET and CONS</title>
+</head>
+
+<body>
+
+    <script>
+        // Var is function scoped
+        function varData() {
+            for (var i = 0; i < 10; i++) {
+                console.log("Inside the loop I values", i);
+            }
+            console.log("Outside the loop I values", i);
+        }
+        // varData();
+
+        // Let is block scoped(for loop)        
+        function letData() {
+            for (let i = 0; i < 10; i++) {
+                console.log("Inside the loop I values", i);
+            }
+            console.log("Outside the loop I values", i);
+        }
+        // letData();
+
+        // const is not the function scoped. const will accept only one value
+        function constData() {
+            for (const i = 0; i < 10; i++) {
+                console.log("Inside the loop I values", i);
+            }
+            console.log("Outside the loop I values", i);
+        }
+        // constData();
+
+        // Var can be redeclared and reassigned
+
+        var person = "Naveen";
+        var person ="Babu";
+        person ="Naveen Kumar"
+        console.log(person)
+
+        // let cannot be redeclared but reassigned
+        let companyName = "IBM";
+        // let companyName = "Accenture";
+        companyName = "Accenture";
+        console.log(companyName);
+        
+        const piValue = 3.14;
+        // const piValue = 3.14; // we can't redeclre the value
+        
+        // piValue = 3.35; // we can't reassign the value
+        console.log(piValue);
+
+
+    </script>
+</body>
+
+</html>
