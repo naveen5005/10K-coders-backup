@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket CricBuzz</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            text-align: center;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="displayAllSeriesNames(data)">Cricket latest updates(call back function)</button>
+    
+    <!-- <ol></ol> -->
+    <table>
+        <thead>
+            <tr>
+                <th>Series ID</th>
+                <th>Series Name</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var data = [];
+        function getDataFromServer() {
+            var getdata = new XMLHttpRequest();
+            getdata.onreadystatechange = function () {
+                if (getdata.readyState === 4 && getdata.status === 200) {
+                    data = JSON.parse(getdata.response)
+                    console.log("We are getting data from Cricbuzz API : ", data);
+                    console.log(typeof (data));
+                    // displayAllSeriesNames(data);
+                }
+            };
+            getdata.open("GET", "https://cricbuzz-cricket.p.rapidapi.com/matches/v1/recent");
+            getdata.setRequestHeader("X-RapidAPI-Key", "15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0");
+            getdata.setRequestHeader("X-RapidAPI-Host", "cricbuzz-cricket.p.rapidapi.com");
+            getdata.send();
+        }
+
+        getDataFromServer();
+
+        function displayAllSeriesNames(data) {
+            document.querySelector("tbody").innerHTML = ""
+            data.typeMatches.forEach((series, i) => {
+                series.seriesMatches.forEach((element, i) => {
+                    if (element.seriesAdWrapper) {
+                        // var myLi = document.createElement("li");
+                        // myLi.innerHTML = element.seriesAdWrapper.seriesName;
+                        // document.querySelector("ol").appendChild(myLi);
+                        // console.log(element.seriesAdWrapper.seriesName);
+                        // console.log(element.seriesAdWrapper.seriesId);
+                        var myTr = document.createElement("tr");
+                        var myTd1 = document.createElement("td");
+                        myTd1.innerHTML = element.seriesAdWrapper.seriesId;
+                        myTr.appendChild(myTd1);
+                        var myTd2 = document.createElement("td");
+                        myTd2.innerHTML = element.seriesAdWrapper.seriesName
+                        myTr.appendChild(myTd2);
+                        document.querySelector("tbody").appendChild(myTr);
+                    }
+                })
+                // console.log(series.seriesMatches);
+            });
+        }
+    </script>
+</body>
+
+</html>

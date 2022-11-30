@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashLive Sports - search - Multi search</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <button onclick="buttonClick()">Cricket Live Score(completed) - Promise</button>
+    <button onclick="handleAsyncData()">Cricket Live Score(upcoming)- Async and Await</button> -->
+    <button onclick="btnclickCallBack(); this.onclick=null;">FlashLive Sports - search - Multi search - call back function</button>
+    <button onclick="btnclickCallPromise(); this.onclick=null;">FlashLive Sports - search - Multi search - Promise</button>
+    <button onclick="handleAsyncData(); this.onclick=null;">FlashLive Sports - search - Multi search - Async and Await</button>
+    <br><br><br><br>
+    <!-- <img src="https://www.flashscore.com/res/image/data/d8SZZtZg-nNCjsra2.png" alt=""> -->
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+    <script>
+        var params = {
+            locale: 'en_INT',
+            query: 'mess'
+        }
+
+        // call back function
+        function getDataFromServer() {
+            var getData = new XMLHttpRequest();
+            getData.onreadystatechange = function () {
+                if (getData.readyState === 4 && getData.status === 200) {
+                    data = JSON.parse(getData.response);
+                    displayLists(data)
+                    displayHeading(data);
+                    // console.log(data);
+                }
+            }
+            getData.open("GET", "https://flashlive-sports.p.rapidapi.com/v1/search/multi-search" + formatParams(params));
+            getData.setRequestHeader('X-RapidAPI-Key', '15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0');
+            getData.setRequestHeader('X-RapidAPI-Host', 'flashlive-sports.p.rapidapi.com');
+            getData.send();
+        }
+        function btnclickCallBack() {
+            getDataFromServer();
+        }
+
+        function formatParams(params) {
+            return "?" + Object
+                .keys(params)
+                .map(function (key) {
+                    return key + "=" + encodeURIComponent(params[key])
+                })
+                .join("&")
+        }
+        // console.log(formatParams(params));
+
+        function displayHeading(data) {
+            var myTrh = document.createElement("tr");
+            data.forEach((element, i) => {
+                if (element.ID === "vgOOdZbd") {
+                    for (a in element) {
+                        if (a !== "FAVOURITE_KEY" && a !== "GENDER_ID" && a !== "ID" && a !== "PARTICIPANT_TYPE_ID" && a !== "SPORT_ID" && a !== "TITLE" && a !== "TOURNAMENT_STAGE_IDS_WITH_STATS_DATA" && a !== "TYPE" && a !== "URL") {
+                            console.log(a, element[a], typeof (a))
+                            myTh = document.createElement("th");
+                            myTh.innerHTML = a;
+                            myTrh.appendChild(myTh);
+                        }
+                        console.log(a, element[a], typeof (a))
+                        document.querySelector("thead").appendChild(myTrh);
+                    }
+                }
+            })
+        }
+        function displayLists(data) {
+            console.log(data)
+            data.forEach((element) => {
+                myTr = document.createElement("tr");
+                for (a in element) {
+                    myTd = document.createElement("td");
+                    if (a !== "FAVOURITE_KEY" && a !== "GENDER_ID" && a !== "ID" && a !== "PARTICIPANT_TYPE_ID" && a !== "SPORT_ID" && a !== "TITLE" && a !== "TOURNAMENT_STAGE_IDS_WITH_STATS_DATA" && a !== "TYPE" && a !== "URL" && a !== "IMAGE") {
+                        // console.log(a, element[a], typeof (a))
+                        myTd.innerHTML = element[a];
+                        myTr.appendChild(myTd);
+                    }
+                    else if (a === "IMAGE") {
+                        myImage = document.createElement("img");
+                        myImage.setAttribute("src", element[a]);
+                        myImage.setAttribute("alt", "no Image😒")
+                        myTd.appendChild(myImage);
+                        myTr.appendChild(myTd);
+                    }
+                }
+                document.querySelector("tbody").appendChild(myTr);
+            })
+        }
+
+
+
+        // promise
+
+        function getDataFromServerPromise() {
+            return new Promise((resolve, reject) => {
+                var getData = new XMLHttpRequest();
+                getData.onreadystatechange = function () {
+                    if (getData.readyState === 4 && getData.status === 200) {
+                        data = JSON.parse(getData.response);
+                        displayHeading(data);
+                        resolve(data);
+                        // console.log(data);
+                    }
+                }
+                getData.open("GET", "https://flashlive-sports.p.rapidapi.com/v1/search/multi-search" + formatParams(params));
+                getData.setRequestHeader('X-RapidAPI-Key', '15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0');
+                getData.setRequestHeader('X-RapidAPI-Host', 'flashlive-sports.p.rapidapi.com');
+                getData.send();
+            })
+        }
+
+        function btnclickCallPromise() {
+            getDataFromServerPromise().then((data) => {
+                console.log(data)
+                data.forEach((element) => {
+                    myTr = document.createElement("tr");
+                    for (a in element) {
+                        myTd = document.createElement("td");
+                        if (a !== "FAVOURITE_KEY" && a !== "GENDER_ID" && a !== "ID" && a !== "PARTICIPANT_TYPE_ID" && a !== "SPORT_ID" && a !== "TITLE" && a !== "TOURNAMENT_STAGE_IDS_WITH_STATS_DATA" && a !== "TYPE" && a !== "URL" && a !== "IMAGE") {
+                            // console.log(a, element[a], typeof (a))
+                            myTd.innerHTML = element[a];
+                            myTr.appendChild(myTd);
+                        }
+                        else if (a === "IMAGE") {
+                            myImage = document.createElement("img");
+                            myImage.setAttribute("src", element[a]);
+                            myImage.setAttribute("alt", "no Image😒")
+                            myTd.appendChild(myImage);
+                            myTr.appendChild(myTd);
+                        }
+                    }
+                    document.querySelector("tbody").appendChild(myTr);
+                })
+            })
+        }
+
+        // Async Await
+
+        async function handleAsyncData() {
+            data = await getDataFromServerPromise();
+            data.forEach((element) => {
+                myTr = document.createElement("tr");
+                for (a in element) {
+                    myTd = document.createElement("td");
+                    if (a !== "FAVOURITE_KEY" && a !== "GENDER_ID" && a !== "ID" && a !== "PARTICIPANT_TYPE_ID" && a !== "SPORT_ID" && a !== "TITLE" && a !== "TOURNAMENT_STAGE_IDS_WITH_STATS_DATA" && a !== "TYPE" && a !== "URL" && a !== "IMAGE") {
+                        // console.log(a, element[a], typeof (a))
+                        myTd.innerHTML = element[a];
+                        myTr.appendChild(myTd);
+                    }
+                    else if (a === "IMAGE") {
+                        myImage = document.createElement("img");
+                        myImage.setAttribute("src", element[a]);
+                        myImage.setAttribute("alt", "no Image😒")
+                        myTd.appendChild(myImage);
+                        myTr.appendChild(myTd);
+                    }
+                }
+                document.querySelector("tbody").appendChild(myTr);
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Live Score</title>
+</head>
+
+<body>
+    <button onclick="buttonClick(); this.onclick=null;">Cricket Live Score(completed) - Promise</button>
+    <button onclick="handleAsyncData(); this.onclick=null;">Cricket Live Score(upcoming)- Async and Await</button>
+    <button onclick="buttonClickCurrent(); this.onclick=null;">Cricket Live Score(Current)- call back function</button>
+    <ol></ol>
+    <script>
+
+        // Promise
+        function getData() {
+            return new Promise((resolve, reject) => {
+                var getdata = new XMLHttpRequest();
+                getdata.onreadystatechange = function () {
+                    if (getdata.readyState === 4 && getdata.status === 200) {
+                        data = JSON.parse(getdata.response)
+                        resolve(data);
+                        displayCurrent(data);
+                    }
+                };
+                getdata.open("GET", "https://cricket-live-score4.p.rapidapi.com/apis/series");
+                getdata.setRequestHeader("X-RapidAPI-Key", "15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0");
+                getdata.setRequestHeader("X-RapidAPI-Host", "cricket-live-score4.p.rapidapi.com");
+                getdata.send();
+            })
+        }
+        function buttonClick() {
+            getData().then((data) => {
+                console.log(data);
+                // console.log(data.status)
+                // console.log(data.data)
+                data.data.completed.forEach((element) => {
+                    myLi = document.createElement("li");
+                    myLi.innerHTML = element.series_name
+                    document.querySelector("ol").appendChild(myLi);
+                })
+            })
+        }
+
+
+        // Async and Await
+        async function handleAsyncData() {
+            data = await getData();
+            // console.log(data)
+            data.data.upcoming.forEach((element) => {
+                myLi = document.createElement("li");
+                myLi.innerHTML = element.series_name
+                document.querySelector("ol").appendChild(myLi);
+            })
+        }
+
+
+
+        // call back function
+        function displayCurrent(data) {
+            // console.log(data)
+            data.data.current.forEach((element) => {
+                myLi = document.createElement("li");
+                myLi.innerHTML = element.series_name
+                document.querySelector("ol").appendChild(myLi);
+            })
+        }
+
+        function buttonClickCurrent(){
+            getData();
+        }
+    </script>
+</body>
+
+</html>

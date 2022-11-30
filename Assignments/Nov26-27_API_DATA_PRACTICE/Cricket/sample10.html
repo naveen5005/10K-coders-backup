@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashLive Sports - events - Event brief data (beta)</title>
+    <style>
+        table,
+        td,
+        tr,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="promise" onclick="clickDataPromise(); this.onclick = null;">Event brief data (beta)(Promise)</button>
+    <button id="async_await" onclick="handleAsyncData(); this.onclick = null;">Event brief data (beta)(Async and Await)</button>
+    <button id="call_back_function" onclick="clickMeData(); this.onclick = null;">Event brief data (beta)(Call back function)</button>
+    <br><br><br><br>
+
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+
+        var params = {
+            locale: 'en_INT', event_id: 'MaEBhnGC'
+        }
+        // Promise
+        function getDataFromServerPromise() {
+            return new Promise((resolve, reject) => {
+                var getData = new XMLHttpRequest();
+                getData.onreadystatechange = function () {
+                    if (getData.readyState === 4 && getData.status === 200) {
+                        var data = JSON.parse(getData.response);
+                        resolve(data);
+                        displayHeading(data);
+                        // displayEventBriefData(data);
+                    }
+                }
+                getData.open("GET", "https://flashlive-sports.p.rapidapi.com/v1/events/brief" + formatParams(params));
+                getData.setRequestHeader('X-RapidAPI-Key', '15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0');
+                getData.setRequestHeader('X-RapidAPI-Host', 'flashlive-sports.p.rapidapi.com');
+                getData.send();
+            })
+        }
+        
+
+        function formatParams(params) {
+            return "?" + Object
+                .keys(params)
+                .map(function (key) {
+                    return key + "=" + encodeURIComponent(params[key])
+                })
+                .join("&")
+        }
+
+        function clickDataPromise() {
+            getDataFromServerPromise().then((data) => {
+                document.querySelector("tbody").innerHTML=""
+                for (a in data) {
+                    myTr = document.createElement("tr");
+                    for (b in data[a]) {
+                        if (b !== "DEI") {
+                            myTd = document.createElement("td");
+                            myTd.innerHTML = data[a][b];
+                            myTr.appendChild(myTd);
+                        }
+                        else if (b === "DEI") {
+                            myTd = document.createElement("td");
+                            myImage = document.createElement("img");
+                            myImage.setAttribute("src", data[a][b])
+                            myTd.appendChild(myImage);
+                            myTr.appendChild(myTd);
+                        }
+                        // console.log(b);
+                    }
+                    document.querySelector("tbody").appendChild(myTr);
+                    // console.log(a);
+                }
+                console.log(data);
+
+                // document.getElementById("async_await").style.display = "none";
+                // document.getElementById("call_back_function").style.display = "none";
+            })
+
+        }
+        function displayHeading(data) {
+            document.querySelector("thead").innerHTML = "";
+            for (a in data) {
+                myTr = document.createElement("tr");
+                for (b in data[a]) {
+                    myTh = document.createElement("th");
+                    myTh.innerHTML = b;
+                    myTr.appendChild(myTh);
+                }
+                document.querySelector("thead").appendChild(myTr);
+                // console.log(a);
+            }
+        }
+
+        // Async and Await
+        async function handleAsyncData() {
+            data = await getDataFromServerPromise();
+            document.querySelector("tbody").innerHTML="";
+            for (a in data) {
+                myTr = document.createElement("tr");
+                for (b in data[a]) {
+                    if (b !== "DEI") {
+                        myTd = document.createElement("td");
+                        myTd.innerHTML = data[a][b];
+                        myTr.appendChild(myTd);
+                    }
+                    else if (b === "DEI") {
+                        myTd = document.createElement("td");
+                        myImage = document.createElement("img");
+                        myImage.setAttribute("src", data[a][b])
+                        myTd.appendChild(myImage);
+                        myTr.appendChild(myTd);
+                    }
+                    // console.log(b);
+                }
+                document.querySelector("tbody").appendChild(myTr);
+                // console.log(a);
+                // document.getElementById("promise").style.display = "none";
+                // document.getElementById("call_back_function").style.display = "none";
+            }
+        }
+
+        // call back function
+
+        function getDataFromServer() {
+            var getData = new XMLHttpRequest();
+                getData.onreadystatechange = function () {
+                    if (getData.readyState === 4 && getData.status === 200) {
+                        var data = JSON.parse(getData.response);
+                        displayHeading(data);
+                        displayEventBriefData(data);
+                    }
+                }
+                getData.open("GET", "https://flashlive-sports.p.rapidapi.com/v1/events/brief" + formatParams(params));
+                getData.setRequestHeader('X-RapidAPI-Key', '15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0');
+                getData.setRequestHeader('X-RapidAPI-Host', 'flashlive-sports.p.rapidapi.com');
+                getData.send();
+        }
+        
+        function displayEventBriefData(data) {
+                document.querySelector("tbody").innerHTML="";
+                for (a in data) {
+                    myTr = document.createElement("tr");
+                    for (b in data[a]) {
+                        if (b !== "DEI") {
+                            myTd = document.createElement("td");
+                            myTd.innerHTML = data[a][b];
+                            myTr.appendChild(myTd);
+                        }
+                        else if (b === "DEI") {
+                            myTd = document.createElement("td");
+                            myImage = document.createElement("img");
+                            myImage.setAttribute("src", data[a][b])
+                            myTd.appendChild(myImage);
+                            myTr.appendChild(myTd);
+                        }
+                        // console.log(b);
+                    }
+                    document.querySelector("tbody").appendChild(myTr);
+                    // console.log(a);
+                }
+            }
+
+        function clickMeData(){
+            getDataFromServer();
+            // document.getElementById("async_await").style.display = "none";
+            // document.getElementById("promise").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashLive Sports - Sports - Number of sport events</title>
+    <style>
+        table,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="SportsEventList(); this.onclick=null;">Sports Events(Promise)</button>
+    <button onclick="handleAsyncData(); this.onclick=null;">Sports Events(Async and Await)</button>
+    <button onclick="clickMeData(); this.onclick=null;">Sports Events(call back function)</button>
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var params = {
+            timezone: '-4',
+            locale: 'en_INT'
+        }
+
+        // Promise
+        function getDataFromServerPromise() {
+            return new Promise((resolve, reject) => {
+                var getdata = new XMLHttpRequest();
+                getdata.onreadystatechange = function () {
+                    if (getdata.readyState === 4 && getdata.status === 200) {
+                        data = JSON.parse(getdata.response);
+                        resolve(data);
+                        displayHeading(data);
+                        displaySportsEventLists(data);
+                    }
+                }
+                getdata.open("GET", "https://flashlive-sports.p.rapidapi.com/v1/sports/events-count" + formatParams(params));
+                getdata.setRequestHeader('X-RapidAPI-Key', '15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0');
+                getdata.setRequestHeader('X-RapidAPI-Host', 'flashlive-sports.p.rapidapi.com');
+                getdata.send();
+            })
+        }
+
+        function formatParams(params) {
+            return "?" + Object
+                .keys(params)
+                .map(function (key) {
+                    return key + "=" + encodeURIComponent(params[key])
+                })
+                .join("&")
+        }
+        console.log(formatParams(params))
+
+        function displayHeading(data) {
+            console.log(data)
+            for (a in data) {
+                for (b in data[a]) {
+                    if (b === "SPORTS") {
+                        myTr = document.createElement("tr");
+                        console.log(data[a][b][0]);
+                        for (c in data[a][b][0]) {
+                            myth = document.createElement("th");
+                            myth.innerHTML = c;
+                            myTr.appendChild(myth);
+                        }
+                        document.querySelector("thead").appendChild(myTr)
+                    }
+
+                }
+            }
+        }
+
+        function SportsEventList() {
+            getDataFromServerPromise().then((data) => {
+                console.log(data);
+                for (a in data) {
+                    for (b in data[a]) {
+                        if (b === "SPORTS") {
+                            data[a][b].forEach((element) => {
+                                myTr = document.createElement("tr");
+                                for (c in element) {
+                                    myTd = document.createElement("td");
+                                    myTd.innerHTML = element[c];
+                                    myTr.appendChild(myTd);
+                                    // console.log(c)
+                                }
+                                document.querySelector("tbody").appendChild(myTr);
+                            })
+                        }
+
+                    }
+                }
+            })
+        }
+
+        // Async and await
+        async function handleAsyncData() {
+            data = await getDataFromServerPromise();
+            for (a in data) {
+                for (b in data[a]) {
+                    if (b === "SPORTS") {
+                        data[a][b].forEach((element) => {
+                            myTr = document.createElement("tr");
+                            for (c in element) {
+                                myTd = document.createElement("td");
+                                myTd.innerHTML = element[c];
+                                myTr.appendChild(myTd);
+                                // console.log(c)
+                            }
+                            document.querySelector("tbody").appendChild(myTr);
+                        })
+                    }
+
+                }
+            }
+        }
+
+        // Call back function
+        function displaySportsEventLists(data) {
+            for (a in data) {
+                for (b in data[a]) {
+                    if (b === "SPORTS") {
+                        data[a][b].forEach((element) => {
+                            myTr = document.createElement("tr");
+                            for (c in element) {
+                                myTd = document.createElement("td");
+                                myTd.innerHTML = element[c];
+                                myTr.appendChild(myTd);
+                                // console.log(c)
+                            }
+                            document.querySelector("tbody").appendChild(myTr);
+                        })
+                    }
+
+                }
+            }
+        }
+
+        function clickMeData(){
+            getDataFromServerPromise();
+        }
+    </script>
+</body>
+
+</html>

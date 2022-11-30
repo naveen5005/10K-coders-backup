@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashLive Sports - events - Event starting lineups</title>
+    <style>
+        table,
+        td,
+        th,
+        tr {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="clickMeDataPromise(); this.onclick = null;">Event starting lineups(Promise)</button>
+    <button onclick="handleAsyncData(); this.onclick = null;">Event starting lineups(Async and Await)</button>
+    <button onclick="clickMeData(); this.onclick = null;">Event starting lineups(call back function)</button>
+    <br><br><br><br>
+
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var params = {
+            locale: 'en_INT', event_id: 'biWgccO3'
+        }
+        // Promise
+        function getDataFromServerPromise() {
+            return new Promise((resolve, reject) => {
+                var getdata = new XMLHttpRequest();
+                getdata.onreadystatechange = function () {
+                    if (getdata.readyState === 4 && getdata.status === 200) {
+                        data = JSON.parse(getdata.response);
+                        resolve(data);
+                        displayHeading(data);
+                        displayEventStartingLineups(data)
+                    }
+                }
+                getdata.open("GET", "https://flashlive-sports.p.rapidapi.com/v1/events/lineups" + formatParams(params));
+                getdata.setRequestHeader('X-RapidAPI-Key', '15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0');
+                getdata.setRequestHeader('X-RapidAPI-Host', 'flashlive-sports.p.rapidapi.com');
+                getdata.send();
+            })
+        }
+
+        function formatParams(params) {
+            return "?" + Object
+                .keys(params)
+                .map(function (key) {
+                    return key + "=" + encodeURIComponent(params[key])
+                })
+                .join("&")
+        }
+
+        function clickMeDataPromise() {
+            getDataFromServerPromise().then((data) => {
+                data.DATA.forEach(element => {
+                    for (a in element) {
+                        if (a === "FORMATIONS") {
+                            element[a].forEach((element) => {
+                                for (b in element) {
+                                    if (b === "MEMBERS") {
+                                        element[b].forEach((element, i) => {
+                                            myTr = document.createElement("tr");
+                                            for (c in element) {
+                                                myTd = document.createElement("td");
+                                                myTd.innerHTML = element[c];
+                                                myTr.appendChild(myTd);
+                                            }
+                                            document.querySelector("tbody").appendChild(myTr);
+                                            // console.log(element)
+                                        })
+                                    }
+                                    // console.log(b)
+                                }
+                                // console.log(element)
+                            })
+                        }
+                        // console.log(a)
+                    }
+                    // console.log(element);
+                });
+                console.log(data);
+            })
+
+        }
+        function displayHeading(data) {
+            data.DATA.forEach((element, i) => {
+                if (i === 0) {
+                    for (a in element) {
+                        if (a === "FORMATIONS") {
+                            element[a].forEach((element, i) => {
+                                if (i === 0) {
+                                    for (b in element) {
+                                        if (b === "MEMBERS") {
+                                            element[b].forEach((element, i) => {
+                                                if (i === 0) {
+                                                    myTr = document.createElement("tr");
+                                                    for (c in element) {
+                                                        myTh = document.createElement("th");
+                                                        myTh.innerHTML = c;
+                                                        myTr.appendChild(myTh);
+                                                        // console.log(c);
+                                                    }
+                                                    document.querySelector("tbody").appendChild(myTr);
+                                                }
+                                            })
+                                        }
+                                    }
+                                    // console.log(element)
+                                }
+                            })
+                        }
+
+                    }
+                }
+            })
+            // console.log(data);
+        }
+
+        // Async and Await
+        async function handleAsyncData() {
+            data = await getDataFromServerPromise();
+            data.DATA.forEach(element => {
+                for (a in element) {
+                    if (a === "FORMATIONS") {
+                        element[a].forEach((element) => {
+                            for (b in element) {
+                                if (b === "MEMBERS") {
+                                    element[b].forEach((element, i) => {
+                                        myTr = document.createElement("tr");
+                                        for (c in element) {
+                                            myTd = document.createElement("td");
+                                            myTd.innerHTML = element[c];
+                                            myTr.appendChild(myTd);
+                                        }
+                                        document.querySelector("tbody").appendChild(myTr);
+                                        // console.log(element)
+                                    })
+                                }
+                                // console.log(b)
+                            }
+                            // console.log(element)
+                        })
+                    }
+                    // console.log(a)
+                }
+                // console.log(element);
+            });
+        }
+
+        // call back function
+        function displayEventStartingLineups(data) {
+            data.DATA.forEach(element => {
+                for (a in element) {
+                    if (a === "FORMATIONS") {
+                        element[a].forEach((element) => {
+                            for (b in element) {
+                                if (b === "MEMBERS") {
+                                    element[b].forEach((element, i) => {
+                                        myTr = document.createElement("tr");
+                                        for (c in element) {
+                                            myTd = document.createElement("td");
+                                            myTd.innerHTML = element[c];
+                                            myTr.appendChild(myTd);
+                                        }
+                                        document.querySelector("tbody").appendChild(myTr);
+                                        // console.log(element)
+                                    })
+                                }
+                                // console.log(b)
+                            }
+                            // console.log(element)
+                        })
+                    }
+                    // console.log(a)
+                }
+                // console.log(element);
+            });
+        }
+        function clickMeData() {
+            getDataFromServerPromise();
+        }
+    </script>
+</body>
+
+</html>

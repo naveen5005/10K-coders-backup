@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Live Data</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="displayAllSeries(data)">Cicket Live Data - call back function</button>
+
+    <button onclick="getDataFromServerPomise()">Cicket Live Data - Promise object</button> <br><br><br>
+
+    <script>
+
+        //call back function
+        function getDataFromServer() {
+            var getdata = new XMLHttpRequest();
+            getdata.onreadystatechange = function () {
+                if (getdata.readyState === 4 && getdata.status === 200) {
+                    data = JSON.parse(getdata.response);
+                    // console.log(data, typeof (data));
+                    displayAllSeriesHeadings(data);
+                }
+            };
+            getdata.open("GET", "https://cricket-live-data.p.rapidapi.com/series");
+            getdata.setRequestHeader("X-RapidAPI-Key", "15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0");
+            getdata.setRequestHeader("X-RapidAPI-Host", "cricket-live-data.p.rapidapi.com");
+            getdata.send();
+        }
+
+        getDataFromServer();
+
+        myTable = document.createElement("table");
+        myTbody = document.createElement("tbody");
+        myTr = document.createElement("tr");
+        myThead = document.createElement("thead");
+
+        function displayAllSeriesHeadings(data) {
+            data.results.forEach((result, i) => {
+                result.series.forEach((series, i) => {
+                    if (series.series_id === 692) {
+                        // myThead.innerHTML="";
+                        for (a in series) {
+                            myTh = document.createElement("th");
+                            myTh.innerHTML = a
+                            myTr.appendChild(myTh);
+                        }
+                        myThead.appendChild(myTr);
+                        myTable.appendChild(myThead);
+                    }
+                })
+            })
+        }
+
+        function displayAllSeries(data) {
+            data.results.forEach((result, i) => {
+                myTbody.innerHTML = "";
+                result.series.forEach((series, i) => {
+                    myTr1 = document.createElement("tr");
+                    for (a in series) {
+                        myTd = document.createElement("td");
+                        myTd.innerHTML = series[a]
+                        myTr1.appendChild(myTd);
+                        // console.log(series);
+                    }
+                    myTbody.appendChild(myTr1);
+                })
+            })
+            myTable.appendChild(myTbody);
+            document.querySelector("body").appendChild(myTable);
+        }
+
+
+
+        // Promise
+
+        function getDataFromServerPomise() {
+            return new Promise((resolve, reject) => {
+                var getdata = new XMLHttpRequest();
+                getdata.onreadystatechange = function () {
+                    if (getdata.readyState === 4 && getdata.status === 200) {
+                        data = JSON.parse(getdata.response);
+                        if (true) {
+                            resolve(data);
+                           
+                        }
+                        // console.log(data, typeof (data));
+
+                    }
+                };
+                getdata.open("GET", "https://cricket-live-data.p.rapidapi.com/series");
+                getdata.setRequestHeader("X-RapidAPI-Key", "15c4636a2fmsh494bdb860eaf718p12a7dejsn2d43167ab1e0");
+                getdata.setRequestHeader("X-RapidAPI-Host", "cricket-live-data.p.rapidapi.com");
+                getdata.send();
+            })
+        }
+
+        getDataFromServerPomise().then((data) => {
+            
+            data.results.forEach((result, i) => {
+                myTbody.innerHTML = "";
+                result.series.forEach((series, i) => {
+                    myTr1 = document.createElement("tr");
+                    for (a in series) {
+                        myTd = document.createElement("td");
+                        myTd.innerHTML = series[a]
+                        myTr1.appendChild(myTd);
+                        // console.log(series);
+                    }
+                    myTbody.appendChild(myTr1);
+                })
+            })
+            myTable.appendChild(myTbody);
+            document.querySelector("body").appendChild(myTable);
+        })
+
+
+
+    </script>
+</body>
+
+</html>
