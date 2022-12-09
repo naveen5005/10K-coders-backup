@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #slider img {
+            width: 500px;
+            /* display: none; */
+        }
+
+        #slider {
+            text-align: center;
+            margin-top: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="slider">
+        <img src="1.jpg" alt="">
+    </div>
+    <script>
+        // document.querySelector("img").setAttribute("src", "1.jpg");
+
+
+        function changeImage() {
+            var imageAddress = document.querySelector("img").src
+            console.log(imageAddress);
+            var imageNo = imageAddress.substr(imageAddress.lastIndexOf("/") + 1, 1);
+            console.log(imageNo)
+            imageNo++;
+            
+            if (imageNo === 4) {
+                imageNo = 1
+            }
+            document.querySelector("img").setAttribute("src", imageNo + ".jpg");
+            // console.log(imageNo)
+        }
+
+        setInterval(() => {
+            changeImage();
+        }, 3000)
+        // changeImage();
+    </script>
+</body>
+
+</html>
