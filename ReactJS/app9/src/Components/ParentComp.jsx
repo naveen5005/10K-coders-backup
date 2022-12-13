@@ -8,11 +8,16 @@ class ParentComp extends Component{
             welcomeMsg : "Welcome to React JS trainings..."
         }
     }
+    changeMessage = ()=>{
+        this.setState({welcomeMsg : "Hello parent msg, i am child accessing the msg..!!"})
+    }
     render(){
+        // Destructing state
+        const{welcomeMsg} = this.state
         return <div>
             <h2>Welcome to Parent Component</h2>
             {/* <HeaderChild {...this.state}/> */}
-            <HeaderChild message ={this.state.welcomeMsg} />
+            <HeaderChild message ={welcomeMsg} handleChange ={this.changeMessage}/>
         </div>
     }
 }

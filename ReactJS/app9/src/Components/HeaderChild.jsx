@@ -6,8 +6,11 @@ class HeaderChild extends Component{
         super()
     }
     render(){
-        return <div style={{background:"grey",color:"whitesmoke"}}>
-            {this.props.message}
+        // desctructing Props
+        const{handleChange,message} = this.props;
+        return <div>
+            <button onClick={handleChange}>Change Message</button>
+            <p style={{background:"grey",color:"whitesmoke"}}>{message}</p>
         </div>
     }
 }
