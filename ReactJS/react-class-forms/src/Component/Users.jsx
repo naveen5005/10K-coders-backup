@@ -12,7 +12,7 @@ class User extends Component{
         console.log(e)
     }
     addUser(){
-        console.log(this.state)
+        
     }
     render(){
         return <div>
