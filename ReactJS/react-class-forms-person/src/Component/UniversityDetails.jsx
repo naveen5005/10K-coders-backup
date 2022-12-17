@@ -13,7 +13,9 @@ export default class UniversityDetails extends Component {
                 avgCPI: "",
                 thSemester: "",
                 experience: "",
-                webSite_Blog: ""
+                webSite_Blog: "",
+                DOB:"",
+                time:""
             },
             allusers: [
                 {
@@ -25,7 +27,9 @@ export default class UniversityDetails extends Component {
                     avgCPI: "98",
                     thSemester: "8",
                     experience: "0",
-                    webSite_Blog: "https://www.google.co.in/"
+                    webSite_Blog: "https://www.google.co.in/",
+                    DOB:"",
+                    time:""
                 }
             ],
             editIndex : null
@@ -65,20 +69,6 @@ export default class UniversityDetails extends Component {
         this.clearForm();
     }
     clearForm(){
-        // console.log("Clear form action triggered...!");
-        // var newUserClear = this.state.allusers.map((element,i)=>{
-        //     if(i==0){
-        //         for(let a in element){
-        //             if(a === "branch"){
-        //                 element[a]="--select one branch--"
-        //             }
-        //             else{
-        //                 element[a] = ""
-        //             }
-        //             return element;
-        //         }
-        //     }
-        // })
         var newUserClear={
             university: "",
             institute: "",
@@ -88,7 +78,9 @@ export default class UniversityDetails extends Component {
             avgCPI: "",
             thSemester: "",
             experience: "",
-            webSite_Blog: ""
+            webSite_Blog: "",
+            DOJ :"",
+            time:""
         }
         this.setState({RegistrationDetails:newUserClear});
     }
@@ -140,7 +132,11 @@ export default class UniversityDetails extends Component {
                     <label htmlFor="">Experience</label>
                     <input type="number" name="experience" id="" value={this.state.RegistrationDetails.experience} onChange={(e) => { this.changeHandle(e) }} /><br />
                     <label htmlFor="">Your Website or blog</label>
-                    <input type="text" name="webSite_Blog" id="" value={this.state.RegistrationDetails.webSite_Blog} onChange={(e) => { this.changeHandle(e) }} /> <br /> <br />
+                    <input type="text" name="webSite_Blog" id="" value={this.state.RegistrationDetails.webSite_Blog} onChange={(e) => { this.changeHandle(e) }} /> <br />
+                    <label htmlFor="">DOJ</label>
+                    <input type="date" name="DOJ" value={this.state.RegistrationDetails.DOJ} onChange={(e)=>{this.changeHandle(e)}} /> <br />
+                    <label htmlFor="">Time</label>
+                    <input type="time" name="time" value={this.state.RegistrationDetails.DOJ} onChange={(e)=>{this.changeHandle(e)}} /><br /><br />
                     {this.state.editIndex != null ? 
                     <button type='button' className='btn btn-primary' onClick={this.updateUser}>Update Details</button> :
                     <button type='button' className='btn btn-primary' onClick={this.addUser}>Add Details</button>}
@@ -159,6 +155,8 @@ export default class UniversityDetails extends Component {
                             <th>th Semester</th>
                             <th>Experience</th>
                             <th> Your Website or Blogs</th>
+                            <th>DOJ</th>
+                            <th>Time</th>
                             <th>EDIT</th>
                             <th>DELETE</th>
                         </tr>
@@ -175,6 +173,8 @@ export default class UniversityDetails extends Component {
                                 <td>{usr.thSemester}</td>
                                 <td>{usr.experience}</td>
                                 <td>{usr.webSite_Blog}</td>
+                                <td>{usr.DOJ}</td>
+                                <td>{usr.time}</td>
                                 <td>
                                     <button type='button' className='btn btn-warning' onClick={()=>{this.editUser(usr,i)}}>EDIT</button>
                                 </td>
