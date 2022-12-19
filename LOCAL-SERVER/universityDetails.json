@@ -1,0 +1,107 @@
+{
+  "university": [
+    {
+      "university": "Vignan niversity",
+      "institute": "Main campus",
+      "branch": "MECH",
+      "degree": "Graduate",
+      "status": "Completed",
+      "avgAPI": "87",
+      "experience": "2",
+      "website": "https://www.google.com",
+      "avgCPI": "1",
+      "id": 1
+    },
+    {
+      "university": "KLU",
+      "institute": "",
+      "branch": "",
+      "degree": "Post Graduate",
+      "status": "Completed",
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "id": 2
+    },
+    {
+      "university": "JNTU",
+      "institute": "",
+      "branch": "",
+      "degree": "Post Graduate",
+      "status": "Completed",
+      "avgCPI": "",
+      "experience": "",
+      "website": "sample876",
+      "id": 3
+    },
+    {
+      "university": "LPU",
+      "institute": "secondq",
+      "branch": "ECE",
+      "degree": "Graduate",
+      "status": "Completed",
+      "avgCPI": "87",
+      "experience": "3",
+      "website": "https://klu.com",
+      "id": 4
+    },
+    {
+      "university": "naveen",
+      "institute": "",
+      "branch": "",
+      "degree": "",
+      "status": "Completed",
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "areasofInterest": [],
+      "id": 5
+    },
+    {
+      "university": "mahesh",
+      "institute": "",
+      "branch": "",
+      "degree": "",
+      "status": "Completed",
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "id": 6
+    },
+    {
+      "university": "kiran",
+      "institute": "",
+      "branch": "",
+      "degree": "",
+      "status": "Completed",
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "id": 7
+    },
+    {
+      "university": "",
+      "institute": "",
+      "branch": "",
+      "degree": "",
+      "status": "Completed",
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "areasofInterest": [],
+      "id": 8
+    },
+    {
+      "university": "JNTUK",
+      "institute": "",
+      "branch": "",
+      "degree": "",
+      "status": "Pursuing",
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "areasofInterest": [],
+      "id": 9
+    }
+  ]
+}
