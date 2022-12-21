@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 
 export default class UserThird extends Component {
+    rcc
     constructor(props) {
         super(props)
 
@@ -54,8 +55,9 @@ export default class UserThird extends Component {
                     allcheckboxes.push(e.target.value)
                 }
             }
-            console.log(allcheckboxes)
-            this.setState({areasofInterest : allcheckboxes});
+            newUsers["areasofInterest"] = allcheckboxes;
+            // console.log(allcheckboxes)
+            // this.setState({areasofInterest : allcheckboxes});
         }
         else {
             newUsers[e.target.name] = e.target.value
@@ -79,20 +81,18 @@ export default class UserThird extends Component {
         this.displayCode();
         this.clearForm();
     }
-    deleteUser = (data, id) => {
-        var number = id + 1;
-        axios.delete("http://localhost:3000/university/" + number).then(() => {
-            this.componentDidMount();
+    deleteUser = (data) => {
+        axios.delete("http://localhost:3000/university/" + data.id).then(() => {
+            this.getAllUsers();
         })
     }
     editUser = (data, id) => {
         this.setState({ universityDetails: data, editIndex: id })
     }
     updateUser = () => {
-        var number = this.state.editIndex + 1;
         axios({
             method: 'PUT',
-            url: 'http://localhost:3000/university/' + number,
+            url: 'http://localhost:3000/university/' + this.state.editIndex,
             data: this.state.universityDetails
         })
         this.displayCode();
@@ -142,15 +142,15 @@ export default class UserThird extends Component {
                     <input type="radio" name="status" checked={this.state.universityDetails.status == "Completed"} value={"Completed"} onChange={(e) => { this.handleChange(e) }} />
                     <label htmlFor="">Completed</label> <br />
                     <label htmlFor="">Average CPI</label>
-                    <input type="number" name="avgCPI" value={this.state.universityDetails.avgAPI} onChange={(e) => { this.handleChange(e) }} /> <br />
+                    <input type="number" name="avgCPI" value={this.state.universityDetails.avgCPI} onChange={(e) => { this.handleChange(e) }} /> <br />
                     <label htmlFor="">Experience</label>
                     <input type="number" name="experience" value={this.state.universityDetails.experience} onChange={(e) => { this.handleChange(e) }} /> <br />
                     <label htmlFor="">WebSite</label> 
                     <input type="url" name="website" value={this.state.universityDetails.website} onChange={(e) => { this.handleChange(e) }} /> <br /> <br />
                     <label htmlFor="">Area of Interest</label><br />
-                    <input type="checkbox" name="areasofInterest" value={"Playing"}  onChange={(e) => { this.handleChange(e) }}/> Playing <br />
-                    <input type="checkbox" name="areasofInterest" value={"Studying"}  onChange={(e) => { this.handleChange(e) }}/> Studying <br />
-                    <input type="checkbox" name="areasofInterest" value={"Music"} onChange={(e) => { this.handleChange(e) }}/> Music <br />
+                    <input type="checkbox" name="areasofInterest" value={"Playing"} checked={this.state.universityDetails.areasofInterest.indexOf("Playing")>-1} onChange={(e) => { this.handleChange(e) }}/> Playing <br />
+                    <input type="checkbox" name="areasofInterest" value={"Studying"} checked={this.state.universityDetails.areasofInterest.indexOf("Studying")>-1}  onChange={(e) => { this.handleChange(e) }}/> Studying <br />
+                    <input type="checkbox" name="areasofInterest" value={"Music"} checked={this.state.universityDetails.areasofInterest.indexOf("Music")>-1} onChange={(e) => { this.handleChange(e) }}/> Music <br />
                     {this.state.editIndex != null ? <button type='button' className='btn btn-primary' onClick={this.updateUser}>Update User</button> :
                         <button type='button' className='btn btn-primary' onClick={this.addUser}>Add User</button>}
                 </form>
@@ -197,6 +197,14 @@ export default class UserThird extends Component {
         )
     }
     async componentDidMount() {
+        let response = axios.get("http://localhost:3000/university").then((res) => {
+            // console.log(res.data);
+            this.setState({ allUniversityDetails: res.data });
+        })
+        // this.getAllUsers();
+    }
+
+    getAllUsers=()=>{
         let response = axios.get("http://localhost:3000/university").then((res) => {
             // console.log(res.data);
             this.setState({ allUniversityDetails: res.data });

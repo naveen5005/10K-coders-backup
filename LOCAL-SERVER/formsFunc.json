@@ -1,0 +1,86 @@
+{
+  "users1": [
+    {
+      "fname": "Naveen Babu",
+      "lname": "Bellam",
+      "dob": "1996-07-14",
+      "email": "bellam.naveen@gmail.com",
+      "phnum": "978745678",
+      "id": 1
+    },
+    {
+      "fname": "",
+      "lname": "naveen",
+      "dob": "",
+      "email": "mohan@outlook.com",
+      "phnum": "",
+      "id": 3
+    },
+    {
+      "fname": "murali",
+      "lname": "Krishna",
+      "dob": "2022-11-13",
+      "email": "murali@gmail.com",
+      "phnum": "9873527265",
+      "id": 4
+    },
+    {
+      "fname": "Ranjot",
+      "lname": "Jashwant",
+      "dob": "",
+      "email": "",
+      "phnum": "",
+      "id": 5
+    },
+    {
+      "fname": "Samsung",
+      "lname": "",
+      "dob": "2022-12-22",
+      "email": "",
+      "phnum": "929836474",
+      "id": 6
+    }
+  ],
+  "users2": [
+    {
+      "university": "Vignan niversity",
+      "institute": "Main campus",
+      "branch": "MECH",
+      "degree": "Bachelor's Degree",
+      "status": "Pursuing",
+      "areasofInterest": [
+        "Singing"
+      ],
+      "avgCPI": "78",
+      "experience": "0",
+      "website": "https://www.google.com",
+      "id": 1
+    }
+  ],
+  "users3": [
+    {
+      "uname": "naveen Kumar",
+      "pwd": "123",
+      "email": "naveen@gmail.com",
+      "presentGender": "I am a man",
+      "interestedGender": "I want to find woman",
+      "year": "1996",
+      "month": "Jul",
+      "date": "14",
+      "id": 1
+    },
+    {
+      "uname": "",
+      "pwd": "",
+      "email": "",
+      "presentGender": "",
+      "interestedGender": "",
+      "year": "",
+      "month": "Mar",
+      "date": "",
+      "id": 2
+    }
+  ],
+  "users4": [],
+  "users5": []
+}

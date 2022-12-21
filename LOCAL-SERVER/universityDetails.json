@@ -46,62 +46,47 @@
       "id": 4
     },
     {
-      "university": "naveen",
+      "university": "",
       "institute": "",
       "branch": "",
       "degree": "",
-      "status": "Completed",
+      "status": "",
       "avgCPI": "",
       "experience": "",
       "website": "",
-      "areasofInterest": [],
+      "areasofInterest": [
+        "Playing"
+      ],
       "id": 5
-    },
-    {
-      "university": "mahesh",
-      "institute": "",
-      "branch": "",
-      "degree": "",
-      "status": "Completed",
-      "avgCPI": "",
-      "experience": "",
-      "website": "",
-      "id": 6
-    },
-    {
-      "university": "kiran",
-      "institute": "",
-      "branch": "",
-      "degree": "",
-      "status": "Completed",
-      "avgCPI": "",
-      "experience": "",
-      "website": "",
-      "id": 7
     },
     {
       "university": "",
       "institute": "",
       "branch": "",
       "degree": "",
-      "status": "Completed",
+      "status": "",
       "avgCPI": "",
       "experience": "",
       "website": "",
-      "areasofInterest": [],
-      "id": 8
+      "areasofInterest": [
+        "Music",
+        "Playing"
+      ],
+      "id": 6
     },
     {
-      "university": "JNTUK",
+      "university": "",
       "institute": "",
       "branch": "",
       "degree": "",
-      "status": "Pursuing",
+      "status": "",
       "avgCPI": "",
       "experience": "",
       "website": "",
-      "areasofInterest": [],
-      "id": 9
+      "areasofInterest": [
+        "Studying"
+      ],
+      "id": 7
     }
   ]
 }
