@@ -6,8 +6,8 @@ function Layout() {
   return (
     <div>
       <br />
-      <h2>Welcome to CRUD Applications</h2> <br /><br /><br />
-      <Users/>
+      <h2>Welcome to CRUD Applications</h2> <br /><br />
+      {/* <Users/> */}
       <Outlet/>
     </div>
   )

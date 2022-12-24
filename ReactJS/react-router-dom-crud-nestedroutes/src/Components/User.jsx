@@ -1,12 +1,15 @@
 import React from 'react'
-import DeleteUser from './DeleteUser'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function User({ myUser }) {
     // console.log(myUser);
+    const navigate = useNavigate();
     const handleDelete = (usr) => {
         console.log(usr);
-        <DeleteUser delUser={usr} />
+        navigate('/delete/' + usr.id);
+    }
+    const handleEdit =(usr)=>{
+        navigate('/edit/' + usr.id);
     }
     return (
         <tr>
@@ -16,13 +19,10 @@ function User({ myUser }) {
             <td>{myUser.email}</td>
             <td>{myUser.phnum}</td>
             <td>
-                <Link to={"/edit"}><button className='btn btn-warning'>Edit</button></Link>
+                <button className='btn btn-warning' onClick={() => { handleEdit(myUser) }}>Edit</button>
             </td>
             <td>
-                <Link to={"/delete"}>
-                    <button className='btn btn-danger' onClick={() => { handleDelete(myUser) }}>Delete</button>
-                </Link>
-
+                <button className='btn btn-danger' onClick={() => { handleDelete(myUser) }}>Delete</button>
             </td>
         </tr>
     )
