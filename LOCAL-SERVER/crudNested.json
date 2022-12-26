@@ -17,14 +17,6 @@
       "id": 4
     },
     {
-      "fname": "Ranjot",
-      "lname": "Jashwant",
-      "dob": "",
-      "email": "",
-      "phnum": "",
-      "id": 5
-    },
-    {
       "fname": "murali",
       "lname": "krishna",
       "dob": "",
@@ -55,6 +47,75 @@
       "experience": "0",
       "website": "https://www.google.com",
       "id": 1
+    },
+    {
+      "university": "naveen",
+      "institute": "KLU",
+      "branch": "MECH",
+      "degree": "Graduate",
+      "status": "",
+      "areasofInterest": [
+        "playing",
+        "coding",
+        "singing"
+      ],
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "id": 2
+    },
+    {
+      "university": "university",
+      "institute": "main institute",
+      "branch": "ECE",
+      "degree": "Post Graduate",
+      "status": "Pursuing",
+      "areasofInterest": [
+        "coding"
+      ],
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "id": 4
+    },
+    {
+      "university": "hexaware",
+      "institute": "hex",
+      "branch": "ECE",
+      "degree": "Post Graduate",
+      "status": "Completed",
+      "areasofInterest": [
+        "singing",
+        "coding"
+      ],
+      "avgCPI": "79",
+      "experience": "1",
+      "website": "https://www. jcbj.com",
+      "id": 6
+    },
+    {
+      "university": "LPU",
+      "institute": "main campus",
+      "branch": "MECH",
+      "degree": "Post Graduate",
+      "status": "Pursuing",
+      "areasofInterest": [],
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "id": 7
+    },
+    {
+      "university": "",
+      "institute": "",
+      "branch": "",
+      "degree": "",
+      "status": "Pursuing",
+      "areasofInterest": [],
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "id": 8
     }
   ],
   "users3": [
@@ -70,15 +131,26 @@
       "id": 1
     },
     {
-      "uname": "",
-      "pwd": "",
+      "uname": "Sneha",
+      "pwd": "sneha12345",
+      "email": "sneha@gmail.com",
+      "presentGender": "I am a woman",
+      "interestedGender": "I want to find a man",
+      "year": "2004",
+      "month": "FEB",
+      "date": "2",
+      "id": 3
+    },
+    {
+      "uname": "Mahesh",
+      "pwd": "mahesh123",
       "email": "",
-      "presentGender": "",
-      "interestedGender": "",
-      "year": "",
-      "month": "Mar",
-      "date": "",
-      "id": 2
+      "presentGender": "I am a man",
+      "interestedGender": "I want to find a woman",
+      "year": "2022",
+      "month": "JAN",
+      "date": "1",
+      "id": 4
     }
   ],
   "users4": [],
