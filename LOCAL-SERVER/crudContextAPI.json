@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "university": "Vignan niversity",
+      "institute": "Main campus",
+      "branch": "MECH",
+      "degree": "Bachelor's Degree",
+      "status": "Pursuing",
+      "areasofInterest": [
+        "Singing"
+      ],
+      "avgCPI": "78",
+      "experience": "0",
+      "website": "https://www.google.com",
+      "id": 1
+    },
+    {
+      "university": "university",
+      "institute": "main institute",
+      "branch": "ECE",
+      "degree": "Post Graduate",
+      "status": "Pursuing",
+      "areasofInterest": [
+        "coding"
+      ],
+      "avgCPI": "",
+      "experience": "",
+      "website": "",
+      "id": 4
+    },
+    {
+      "university": "hexaware",
+      "institute": "",
+      "branch": "ECE",
+      "degree": "Post Graduate",
+      "status": "Completed",
+      "areasofInterest": [
+        "singing"
+      ],
+      "avgCPI": "79",
+      "experience": "1",
+      "website": "https://www. jcbj.com",
+      "id": 6
+    }
+  ]
+}
