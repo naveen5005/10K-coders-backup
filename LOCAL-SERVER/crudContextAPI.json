@@ -27,20 +27,6 @@
       "experience": "",
       "website": "",
       "id": 4
-    },
-    {
-      "university": "hexaware",
-      "institute": "",
-      "branch": "ECE",
-      "degree": "Post Graduate",
-      "status": "Completed",
-      "areasofInterest": [
-        "singing"
-      ],
-      "avgCPI": "79",
-      "experience": "1",
-      "website": "https://www. jcbj.com",
-      "id": 6
     }
   ]
 }

@@ -163,12 +163,13 @@ removeDuplicates(["The", "big", "cat","The", "big", "cat"]);
 // Example: findSingleNumber([2, 2, 2, 3, 4, 4, 4]) ➞ 3
 function uniqueNumbers(arry){
     // return console.log("unique numbers : ",[...new Set(arry)])
+   
     let num =arry.reduce((a,b)=>{
         if(a == b){
             return a;
         }
         else{
-            return b
+            return b;
         }
     })
     console.log(num)

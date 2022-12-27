@@ -16,7 +16,7 @@ const User = () => {
     return (
         <MyContextConsumer>
             {(userInfo,i) => (
-                Object.values(userInfo).map((user,i) => <tr key={i}>
+                (userInfo).map((user,i) => <tr key={i}>
                 <td>{user.university}</td>
                 <td>{user.institute}</td>
                 <td>{user.branch}</td>
@@ -35,6 +35,7 @@ const User = () => {
             </tr>)
             )}
 
+            {/* {(userInfo)=>{console.log(userInfo)}} */}
         </MyContextConsumer>
     )
 }
