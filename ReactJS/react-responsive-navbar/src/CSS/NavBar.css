@@ -6,12 +6,16 @@
     padding: 1px;
     /* display: block; */
 }
-.navbar-menu li{
+.new-navbar-menu{
+    display: none;
+}
+
+.navbar-menu li,.new-navbar-menu li{
     padding: 0.3rem 1rem;
     list-style: none;
     font-size: 1.3rem;
 }
-.navbar-menu li:hover{
+.navbar-menu li:hover,.new-navbar-menu li:hover{
     background-color: white;
     color: black;
     border-radius: 5px;
@@ -68,7 +72,10 @@ li,h1{
     }
 }
 @media screen and (min-width : 681px) {
-    .navbar-menu{
+    .new-navbar-menu{
         display: flex;
+    }
+    .navbar-menu{
+        display: none;
     }
 }

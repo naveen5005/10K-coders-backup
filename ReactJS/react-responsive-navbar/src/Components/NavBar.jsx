@@ -25,6 +25,12 @@ const NavBar = () => {
                 <li>Login</li>
                 <li>Register</li>
             </ul>
+            <ul className='new-navbar-menu'>
+                <li>About us</li>
+                <li>Contact</li>
+                <li>Login</li>
+                <li>Register</li>
+            </ul>
             <div className="toggle">
                 {userToggle ? (<FaTimes onClick={handleToggleTimes} style={{ color: "white", fontSize: "1.7rem" }} />) :
                  (<FaBars onClick={handleToggle} style={{ color: "white", fontSize: "1.7rem" }}/>)}
