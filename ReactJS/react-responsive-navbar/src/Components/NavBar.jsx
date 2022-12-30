@@ -25,7 +25,7 @@ const NavBar = () => {
                 <li>Login</li>
                 <li>Register</li>
             </ul>
-            <ul className='new-navbar-menu'>
+            <ul className='new-navbar-menu navbar'>
                 <li>About us</li>
                 <li>Contact</li>
                 <li>Login</li>
