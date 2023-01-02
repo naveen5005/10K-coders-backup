@@ -1,34 +1,93 @@
-#footer-section{
+#footer-section {
     position: absolute;
     bottom: 0;
     width: 100%;
     background-color: rgb(58, 43, 61);
 }
-.headings{
+
+.headings {
     display: grid;
     grid-template-columns: 20% 20% 20% auto;
     padding-top: 4%;
 }
-.top-heading h3{
-    margin-bottom:10%;
+
+.top-heading h3 {
+    margin-bottom: 10%;
 }
-h3{
+
+h3 {
     color: whitesmoke;
-    
+
 }
-ul li{
+
+ul li {
     list-style: none;
     color: lightgray;
     text-align: start;
     position: relative;
-    left: 20%;
+    left: 10%;
     line-height: 180%;
 }
-.heading-4{
+
+.heading-4 {
     text-align: end;
     margin-right: 10%;
 }
-.heading-4 p{
+
+.heading-4 p {
     color: lightgray;
     text-align: right;
+}
+
+.heading-1 h3,.heading-2 h3{
+    position: relative;
+    right: 5%;
+}
+.heading-3 h3{
+    position: relative;
+    right: 10%;
+}
+@media screen and (max-width : 890px) {
+    .headings {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding-top: 4%;
+    }
+
+    ul li {
+        position: relative;
+        left: 20%;
+    }
+    #application-list{
+        position: relative;
+        left: 28%;
+    }
+    #application-list ul li{
+        left: 35%;
+    }
+    .heading-1 ul,.heading-2 ul,.heading-3 ul,.heading-4 p{
+        position: relative;
+        bottom: 10%;
+    }
+    .heading-3 h3{
+        position: relative;
+        right: 10%;
+    }
+}
+
+@media screen and (max-width : 603px) {
+    .headings {
+        display: grid;
+        grid-template-columns: auto;
+        margin-right: 10%;
+    }
+    .heading-3 h3,.heading-1 h3{
+        position: relative;
+        right: 18%;
+    }
+    .heading-1 ul,.heading-2 ul,.heading-3 ul,.heading-4 p{
+        position: relative;
+        bottom: 20%;
+    }
+
 }

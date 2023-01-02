@@ -14,7 +14,7 @@ function Footer() {
                     <li>Support</li>
                 </ul>
             </div>
-            <div className="top-heading heading-2">
+            <div className="top-heading heading-2" id='application-list'>
                 <h3>Application</h3>
                 <ul>
                     <li>Download</li>
