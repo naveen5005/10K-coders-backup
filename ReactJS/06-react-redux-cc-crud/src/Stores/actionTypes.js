@@ -1,0 +1,2 @@
+export const ADD_PERSON="ADDPERSON";
+export const DELETLE_PERSON ="DELETEPERSON";
