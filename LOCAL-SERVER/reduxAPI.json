@@ -11,7 +11,44 @@
       "lname": "man",
       "email": "ma@gmail.com",
       "id": 3
+    },
+    {
+      "person": {
+        "fname": "",
+        "lname": "",
+        "email": ""
+      },
+      "editIndex": null,
+      "fname": "mahesh",
+      "lname": "kumar",
+      "email": "abc@gmail.com",
+      "id": 5
+    },
+    {
+      "person": {
+        "fname": "",
+        "lname": "",
+        "email": ""
+      },
+      "editIndex": null,
+      "fname": "na",
+      "lname": "",
+      "email": "",
+      "id": 6
     }
   ],
-  "users2" :[]
+  "users2": [
+    {
+      "id": 1,
+      "proName": "Facial cream",
+      "price": 2300,
+      "category": "men/woman"
+    },
+    {
+      "id": 2,
+      "proName": "T-Shirt",
+      "price": 890,
+      "category": "men/woman"
+    }
+  ]
 }
