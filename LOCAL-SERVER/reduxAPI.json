@@ -13,28 +13,10 @@
       "id": 3
     },
     {
-      "person": {
-        "fname": "",
-        "lname": "",
-        "email": ""
-      },
-      "editIndex": null,
-      "fname": "mahesh",
-      "lname": "kumar",
-      "email": "abc@gmail.com",
-      "id": 5
-    },
-    {
-      "person": {
-        "fname": "",
-        "lname": "",
-        "email": ""
-      },
-      "editIndex": null,
-      "fname": "na",
-      "lname": "",
-      "email": "",
-      "id": 6
+      "fname": "venky",
+      "lname": "Kumar",
+      "email": "venky@gmail.com",
+      "id": 4
     }
   ],
   "users2": [
