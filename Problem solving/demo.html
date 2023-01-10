@@ -17,6 +17,44 @@
             string += star;
             console.log(string);
         }
+
+        const compare=()=>
+{
+const sanfoundry=1; 
+const javascript=1;
+if(sanfoundry.toString()===javascript)
+return true;
+else
+console.log("object")
+return false;
+}
+compare()
+
+fruits = ['mango','apple','orange','pineaaple']
+outputFruits =[]
+fruits.map((data)=>{
+    data =data+" is fruit"
+    outputFruits.push(data)
+})
+
+console.log(outputFruits);
+
+const a =[123,23,345,789]
+var result =[];
+
+a.filter((data)=>{
+    let text = data.toString();
+    var b = 0;
+    for(let i=0;i<text.length;i++){
+        b+=Number(text[i])
+    }
+    result.push(b)
+})
+console.log(result)
+let c = result.reduce((a,b)=>{
+    return a+b
+})
+console.log(c)
     </script>
 </body>
 
