@@ -39,10 +39,16 @@
       "category": "men/woman"
     },
     {
-      "id": 2,
-      "proName": "T-Shirt",
-      "price": 890,
-      "category": "men/woman"
+      "proName": "room spray",
+      "price": "90",
+      "category": "",
+      "id": 2
+    },
+    {
+      "proName": "Mobiles",
+      "price": "10000",
+      "category": "Electronics",
+      "id": 3
     }
   ]
 }
