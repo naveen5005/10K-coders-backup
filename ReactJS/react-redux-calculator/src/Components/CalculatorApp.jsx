@@ -11,9 +11,7 @@ const CalculatorApp = () => {
     const handleClick=(e)=>{
         setResult(result.concat(e.target.name));
     }
-    const addClick =()=>{
-        console.log("result", result)
-    }
+
     const clearData=()=>{
         setResult("")
     };
