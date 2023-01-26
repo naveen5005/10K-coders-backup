@@ -13,22 +13,16 @@
       "id": 2
     },
     {
-      "fname": "kiran",
-      "lname": "kumar",
-      "email": "kiran@gmail.com",
-      "id": 3
-    },
-    {
-      "fname": "Salmon",
-      "lname": "Kumar",
-      "email": "",
+      "fname": "Naveen Babu",
+      "lname": "Bellam",
+      "email": "bellam.naveen@gmail.com",
       "id": 4
     },
     {
-      "fname": "Nag",
-      "lname": "Kumar",
-      "email": "kumar@gmail.com",
-      "id": 5
+      "fname": "mahesh",
+      "lname": "kumar",
+      "email": "abc@gmail.com",
+      "id": 6
     }
   ],
   "users2": [
@@ -51,5 +45,5 @@
       "id": 3
     }
   ],
-  "users3" :[]
+  "users3": []
 }

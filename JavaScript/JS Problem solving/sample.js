@@ -97,6 +97,16 @@ phoneNumber([9, 3, 9, 8, 4, 5, 7, 8, 3, 3]);
 // sortByLength(["a", "ccc", "dddd", "bb"]) ➞ ["a", "bb", "ccc", "dddd"]
 function sortedArray() {
     var data = ["a", "ccc", "dddd", "bb"];
+    for (var i = 0; i < data.length; i++) {
+        for (var j = i + 1; j < data.length; j++) {
+            if(data[i].length > data[j].length){
+                var m = data[i];
+                data[i] = data[j];
+                data[j] = m;
+            }
+        }
+    }
+    console.log(data);
     console.log(data.sort());
 }
 sortedArray()
@@ -107,13 +117,13 @@ sortedArray()
 // 1.	findLargestNums([[4, 2, 7, 1], [20, 70, 40, 90], [1, 2, 0]]) ➞ [7, 90, 2]
 function largetArray() {
     var mainArray = [[4, 2, 7, 1], [20, 70, 40, 90], [1, 2, 0]];
-    var newLargeNum =[];
-    mainArray.forEach((element)=>{
+    var newLargeNum = [];
+    mainArray.forEach((element) => {
         console.log(element.sort());
         // console.log(element.reverse(element.sort()));
-        var datas=element.reverse(element.sort());
-        datas.forEach((num,i)=>{
-            if(i==0){
+        var datas = element.reverse(element.sort());
+        datas.forEach((num, i) => {
+            if (i == 0) {
                 newLargeNum.push(num);
             }
         })
@@ -125,11 +135,11 @@ largetArray()
 // 13.	Create a function that takes an array of numbers and returns the second largest number.
 // Example:
 // secondLargest([10, 40, 30, 20, 50]) ➞ 40
-function secondLargestNumber(){
-    var numbers=[10, 40, 30, 20, 50];
-    numbers.reverse(numbers.sort()).forEach((num,i)=>{
-        if(i==1){
-            console.log("second largest number : ",num);
+function secondLargestNumber() {
+    var numbers = [10, 40, 30, 20, 50];
+    numbers.reverse(numbers.sort()).forEach((num, i) => {
+        if (i == 1) {
+            console.log("second largest number : ", num);
         }
     })
 }
@@ -140,42 +150,42 @@ secondLargestNumber()
 // Example:
 // removeDups([1, 0, 1, 0]) ➞ [1, 0]
 // removeDups(["The", "big", "cat"]) ➞ ["The", "big", "cat"]
-function removeDuplicates(arry){
-    var newdata =[]
-    arry.forEach((data)=>{
-        if(newdata.length === 0){
+function removeDuplicates(arry) {
+    var newdata = []
+    arry.forEach((data) => {
+        if (newdata.length === 0) {
             newdata.push(data);
         }
-        else{
-            if(newdata.indexOf(data) === -1){
+        else {
+            if (newdata.indexOf(data) === -1) {
                 newdata.push(data)
             }
         }
     })
     console.log(newdata);
 }
-removeDuplicates([1,0,1,0])
-removeDuplicates(["The", "big", "cat","The", "big", "cat"]);
+removeDuplicates([1, 0, 1, 0])
+removeDuplicates(["The", "big", "cat", "The", "big", "cat"]);
 
 // 15.	Create a function that takes an array of integers as an argument and returns 
 // a unique number from that array. All numbers except unique ones have the same number 
 // of occurrences in the array.
 // Example: findSingleNumber([2, 2, 2, 3, 4, 4, 4]) ➞ 3
-function uniqueNumbers(arry){
+function uniqueNumbers(arry) {
     // return console.log("unique numbers : ",[...new Set(arry)])
-   
-    let num =arry.reduce((a,b)=>{
-        if(a == b){
+
+    let num = arry.reduce((a, b) => {
+        if (a == b) {
             return a;
         }
-        else{
+        else {
             return b;
         }
     })
     console.log(num)
 }
-uniqueNumbers([2,2,2,3,4,4,4])
-var a=[1,1,2,4,5,5,6,78,9]
+uniqueNumbers([2, 2, 2, 3, 4, 4, 4])
+var a = [1, 1, 2, 4, 5, 5, 6, 78, 9]
 console.log([...new Set(a)])
 // Question 16
 // Question 17
@@ -185,43 +195,43 @@ console.log([...new Set(a)])
 // Example:
 // reverseCase("Happy Birthday") ➞ "hAPPY bIRTHDAY"
 
-function reverseCase(str){
+function reverseCase(str) {
     console.log(str);
     // var str = document.getElementById("changeCase").innerHTML,
     var str2 = '';
 
-for (var i = 0; i < str.length; i++) {
-    if (str.charAt(i) === str.charAt(i).toLowerCase()) {
-        str2 += str.charAt(i).toUpperCase();
-    } else if (str.charAt(i) === str.charAt(i).toUpperCase()) {
-        str2 += str.charAt(i).toLowerCase()
-    } else {
-        str2 += str.charAt(i);
+    for (var i = 0; i < str.length; i++) {
+        if (str.charAt(i) === str.charAt(i).toLowerCase()) {
+            str2 += str.charAt(i).toUpperCase();
+        } else if (str.charAt(i) === str.charAt(i).toUpperCase()) {
+            str2 += str.charAt(i).toLowerCase()
+        } else {
+            str2 += str.charAt(i);
+        }
     }
-}
-console.log(str2);
+    console.log(str2);
 }
 reverseCase("Naveen IS a GooD BoY")
 
 
 // highest word in a sentence without using length method
 var highLenghtWord = "10k coders is the best institute";
-var arrySplitted =highLenghtWord.split(" ");
+var arrySplitted = highLenghtWord.split(" ");
 // console.log(arrySplitted , typeof arrySplitted);
-var longestWord = arrySplitted.reduce((a,b)=>{
-    var alength =0;
-    var blength =0;
-    for(let i = 0; a[alength] !== undefined;i++){
+var longestWord = arrySplitted.reduce((a, b) => {
+    var alength = 0;
+    var blength = 0;
+    for (let i = 0; a[alength] !== undefined; i++) {
         alength++;
     }
-    for(let i = 0; b[blength] !== undefined;i++){
+    for (let i = 0; b[blength] !== undefined; i++) {
         blength++;
     }
     console.log(alength);
     console.log(blength);
-    if(alength < blength){
+    if (alength < blength) {
         return b;
-    }else{
+    } else {
         return a;
     }
 })

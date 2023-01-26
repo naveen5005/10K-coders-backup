@@ -29,7 +29,8 @@ const User = () => {
         // console.log(task)
         let update =[...taskStorage]
         update[index] = task;
-        settaskStorage(update) 
+        settaskStorage(update)
+        setIsEdit(false) 
         // console.log(index)
         // console.log(taskStorage)
     }
